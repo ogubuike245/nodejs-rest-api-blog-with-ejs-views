@@ -1,12 +1,15 @@
 const http = require("http");
 const fs = require("fs");
+const _ = require("lodash");
 const PORT = 3000;
 const SUCCESS_CODE = 200;
 const NOT_FOUND = 400;
 
 const server = http.createServer((request, response) => {
-  console.log(request.url, request.method);
+  // console.log(request.url, request.method);
 
+  const number = _.random(0, 30);
+  console.log(number);
   //   set header content type
   response.setHeader("Content-Type", "text/html");
   //   response.write("<h1>OGUBUIKE EMEJURU</h1>");

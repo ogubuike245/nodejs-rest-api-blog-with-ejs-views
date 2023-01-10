@@ -16,7 +16,7 @@ import blogRoutes from "./routes/blogRoutes.js";
 const app = express();
 
 //LISTEN FOR REQUESTS
-app.listen(PORT);
+app.listen(PORT || 8040);
 
 // MONGODB CONNECTION
 
@@ -27,7 +27,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then((result) =>
-    app.listen(PORT, "localhost", () => {
+    app.listen(PORT, () => {
       console.log(result.models);
     })
   )

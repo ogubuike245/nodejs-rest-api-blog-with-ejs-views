@@ -2,9 +2,11 @@
   "name": "blog",
   "version": "1.0.0",
   "description": "NODE JS BLOG",
-  "main": "index.js",
+  "main": "app.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +19,11 @@
   },
   "homepage": "https://github.com/ogubuike245/Node-Js-Blog#readme",
   "dependencies": {
-    "lodash": "^4.17.21"
+    "dotenv": "^16.0.3",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.8.3",
+    "morgan": "^1.10.0"
   }
 }

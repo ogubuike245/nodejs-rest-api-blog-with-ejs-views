@@ -22,7 +22,7 @@ mongoose
     useUnifiedTopology: true,
   })
   .then((result) =>
-    app.listen(PORT, () => {
+    app.listen(PORT || 8040, () => {
       console.log(result.models);
     })
   )

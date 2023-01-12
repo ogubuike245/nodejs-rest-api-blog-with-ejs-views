@@ -1,10 +1,15 @@
+import moment from "moment";
 import Blog from "../models/blogModel.js";
 
 export const getAllBlogs = (request, response) => {
   Blog.find()
     .sort({ createdAt: -1 })
     .then((result) => {
-      response.render("index", { blogs: result, title: "All blogs" });
+      response.render("index", {
+        blogs: result,
+        title: "All blogs",
+        moment: moment,
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -41,6 +46,17 @@ export const createNewBlogPost = (request, response) => {
 export const deleteBlog = (request, response) => {
   const id = request.params.id;
   Blog.findByIdAndDelete(id)
+    .then((result) => {
+      response.json({ redirect: "/blogs" });
+      console.log(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+export const editBlog = (request, response) => {
+  const id = request.params.id;
+  Blog.findByIdAndUpdate(id)
     .then((result) => {
       response.json({ redirect: "/blogs" });
       console.log(result);

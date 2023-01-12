@@ -2,21 +2,37 @@
   <%- include("./partials/head.ejs") %>
 
   <body>
-    <%- include("./partials/navbar.ejs") %>
+    <main>
+      <%- include("./partials/navbar.ejs") %>
 
-    <div class="blogs content">
-      <h2>All Blogs</h2>
+      <div class="blog-list">
+        <h2>All Blogs</h2>
 
-      <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
-      <a class="single" href="/blogs/<%= blog._id %>">
-        <h3 class="title"><%= blog.title %></h3>
-        <p class="snippet"><%= blog.snippet %></p>
-      </a>
-      <% }) %> <% } else { %>
-      <p>There are no blogs to display...</p>
-      <% } %>
-    </div>
+        <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
+        <article class="single">
+          <a href="/blogs/<%= blog._id %>">
+            <h3 class="title">TITLE : <%= blog.title %></h3>
+            <p class="snippet">SNIPPET : <%= blog.snippet %></p>
+            <p class="time"><%= moment(blog.updatedAt).fromNow() %></p>
+          </a>
+          <% }) %> <% } else { %>
+          <p>There are no blogs to display...</p>
+          <% } %>
+        </article>
+      </div>
 
-    <%- include("./partials/footer.ejs") %>
+      <div class="blog-form">
+        <form action="/blogs" method="POST">
+          <label for="title">Blog title:</label>
+          <input type="text" id="title" name="title" required />
+          <label for="snippet">Blog snippet:</label>
+          <input type="text" id="snippet" name="snippet" required />
+          <label for="body">Blog body:</label>
+          <textarea id="body" name="body" required></textarea>
+          <button>Submit</button>
+        </form>
+      </div>
+      <%- include("./partials/footer.ejs") %>
+    </main>
   </body>
 </html>

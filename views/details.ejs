@@ -3,10 +3,10 @@
 
   <body>
     <%- include("./partials/navbar.ejs") %>
-
-    <div class="details content">
-      <h2><%= blog.title %></h2>
+    <a class="goBack"> &larr; </a>
+    <div class="blog-details">
       <div class="content">
+        <h2><%= blog.title %></h2>
         <p><%= blog.body %></p>
       </div>
       <a class="delete" data-doc="<%= blog._id %>">
@@ -17,7 +17,12 @@
     <%- include("./partials/footer.ejs") %>
 
     <script>
+      const arrowBack = document.querySelector("a.goBack");
       const trashcan = document.querySelector("a.delete");
+
+      arrowBack.addEventListener("click", () => {
+        window.history.back();
+      });
 
       trashcan.addEventListener("click", (e) => {
         const endpoint = `/blogs/${trashcan.dataset.doc}`;

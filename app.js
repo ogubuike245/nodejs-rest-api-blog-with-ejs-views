@@ -1,32 +1,16 @@
 import express from "express";
 import morgan from "morgan";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-dotenv.config();
-const { PORT, MONG0_DB_URL } = process.env;
 
+// FILE IMPORTS
+import { connectToDatabase } from "./database/mongoDatabase.js";
 import blogRoutes from "./routes/blogRoutes.js";
 
 //EXPRESS APP
 const app = express();
 
-//LISTEN FOR REQUESTS
-app.listen(PORT || 8040);
-
 // MONGODB CONNECTION
 
-mongoose
-  .set("strictQuery", false)
-  .connect(MONG0_DB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
-  .then((result) =>
-    app.listen(PORT || 8040, () => {
-      console.log(result.models);
-    })
-  )
-  .catch((err) => console.log(err));
+connectToDatabase(app);
 
 // VIEW ENGINE REGISTRATION
 app.set("view engine", "ejs");

@@ -1,6 +1,6 @@
 import Blog from "../models/blogModel.js";
 
-export const blog_index = (request, response) => {
+export const getAllBlogs = (request, response) => {
   Blog.find()
     .sort({ createdAt: -1 })
     .then((result) => {
@@ -11,7 +11,7 @@ export const blog_index = (request, response) => {
     });
 };
 
-export const blog_details = (request, response) => {
+export const getDetailsOfSingleBlog = (request, response) => {
   const id = request.params.id;
   Blog.findById(id)
     .then((result) => {
@@ -23,11 +23,11 @@ export const blog_details = (request, response) => {
     });
 };
 
-export const blog_create_get = (request, response) => {
+export const createNewBlogPage = (request, response) => {
   response.render("create", { title: "Create a new blog" });
 };
 
-export const blog_create_post = (request, response) => {
+export const createNewBlogPost = (request, response) => {
   const blog = new Blog(request.body);
   blog
     .save()
@@ -38,11 +38,12 @@ export const blog_create_post = (request, response) => {
       console.log(err);
     });
 };
-export const blog_delete = (request, response) => {
+export const deleteBlog = (request, response) => {
   const id = request.params.id;
   Blog.findByIdAndDelete(id)
     .then((result) => {
       response.json({ redirect: "/blogs" });
+      console.log(result);
     })
     .catch((err) => {
       console.log(err);

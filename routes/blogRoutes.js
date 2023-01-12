@@ -1,18 +1,18 @@
 // const blogController = require("../controllers/blogController");
 import express from "express";
 import {
-  blog_create_get,
-  blog_index,
-  blog_create_post,
-  blog_details,
-  blog_delete,
+  createNewBlogPage,
+  getAllBlogs,
+  createNewBlogPost,
+  getDetailsOfSingleBlog,
+  deleteBlog,
 } from "../controllers/blogController.js";
 
 const router = express.Router();
-router.get("/create", blog_create_get);
-router.get("/", blog_index);
-router.post("/", blog_create_post);
-router.get("/:id", blog_details);
-router.delete("/:id", blog_delete);
+router.get("/create", createNewBlogPage);
+router.get("/", getAllBlogs);
+router.post("/", createNewBlogPost);
+router.get("/:id", getDetailsOfSingleBlog);
+router.delete("/:id", deleteBlog);
 
 export default router;

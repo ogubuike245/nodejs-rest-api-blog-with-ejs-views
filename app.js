@@ -1,6 +1,6 @@
 import express from "express";
 import morgan from "morgan";
-// import apicache from "apicache";
+import apicache from "apicache";
 
 //
 
@@ -26,8 +26,8 @@ app.use((request, response, next) => {
   next();
 });
 
-// const cache = apicache.middleware;
-// app.use(cache("2 minutes"));
+const cache = apicache.middleware;
+app.use(cache("2 minutes"));
 
 // APP PAGE ROUTES
 app.get("/", (request, response) => {

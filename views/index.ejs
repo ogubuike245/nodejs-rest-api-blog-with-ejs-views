@@ -10,11 +10,19 @@
 
         <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
         <article class="single">
-          <a href="/blogs/<%= blog._id %>">
-            <h3 class="title">TITLE : <%= blog.title %></h3>
+          <div class="details_link">
+            <a href="/api/blogs/<%= blog._id %>">
+              <h3 class="title">TITLE : <%= blog.title %></h3>
+            </a>
             <p class="snippet">SNIPPET : <%= blog.snippet %></p>
             <p class="time"><%= moment(blog.updatedAt).fromNow() %></p>
-          </a>
+
+            <!-- <a class="edit" href="/blogs/<%= blog._id %>"> -->
+            <a class="edit" href="/api/blogs/edit/<%= blog._id %>">
+              &#10000; EDIT
+            </a>
+          </div>
+
           <% }) %> <% } else { %>
           <p>There are no blogs to display...</p>
           <% } %>
@@ -22,7 +30,7 @@
       </div>
 
       <div class="blog-form">
-        <form action="/blogs" method="POST">
+        <form action="/api/blogs" method="POST">
           <label for="title">Blog title:</label>
           <input type="text" id="title" name="title" required />
           <label for="snippet">Blog snippet:</label>
@@ -32,7 +40,16 @@
           <button>Submit</button>
         </form>
       </div>
+
       <%- include("./partials/footer.ejs") %>
     </main>
+
+    <script>
+      console.log("yes console");
+      console.log(blogs._id);
+      const blog = blogs._id;
+      // ? Reviews.find((about) => about._id === currentId)
+      // : null;
+    </script>
   </body>
 </html>

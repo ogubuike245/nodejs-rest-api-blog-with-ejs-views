@@ -20,11 +20,16 @@
   },
   "homepage": "https://github.com/ogubuike245/Node-Js-Blog#readme",
   "dependencies": {
+    "apicache": "^1.6.3",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.8",
     "express": "^4.18.2",
+    "express-session": "^1.17.3",
     "moments": "^0.0.2",
     "mongoose": "^6.8.3",
     "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
   }
 }

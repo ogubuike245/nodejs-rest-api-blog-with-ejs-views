@@ -36,7 +36,7 @@ main {
 .blog-list h2 {
   padding-left: 2rem;
 }
-.blog-list .single a {
+.blog-list .single .details_link {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
@@ -46,10 +46,22 @@ main {
   -webkit-text-decoration-line: none;
           text-decoration-line: none;
   padding-left: 2rem;
+  cursor: default;
 }
-.blog-list .single a h3 {
+.blog-list .single .details_link h3,
+.blog-list .single .details_link p {
   padding-left: 2rem;
   text-transform: uppercase;
+}
+.blog-list .single .details_link a h3 {
+  cursor: pointer;
+}
+
+.edit {
+  padding-left: 2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .blog-form {

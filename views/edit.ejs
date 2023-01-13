@@ -1,0 +1,41 @@
+<html lang="en">
+  <%- include("./partials/head.ejs") %>
+
+  <body>
+    <%- include("./partials/navbar.ejs") %>
+    <a class="goBack"> &larr; </a>
+    <div class="blog-form">
+      <form action="/api/blogs/edit/<%= blog._id %>" method="POST">
+        <label for="title">Blog title:</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          required
+          value="<%=  blog.title %>"
+        />
+        <label for="snippet">Blog snippet:</label>
+        <input
+          type="text"
+          id="snippet"
+          name="snippet"
+          required
+          value="<%=  blog.snippet %>"
+        />
+        <label for="body">Blog body:</label>
+        <textarea id="body" name="body" required><%=  blog.body %></textarea>
+        <button class="edit">Submit</button>
+      </form>
+    </div>
+
+    <%- include("./partials/footer.ejs") %>
+
+    <script>
+      const arrowBack = document.querySelector("a.goBack");
+
+      arrowBack.addEventListener("click", () => {
+        window.history.back();
+      });
+    </script>
+  </body>
+</html>

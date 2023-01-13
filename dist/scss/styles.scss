@@ -42,7 +42,7 @@ main {
   }
   .single {
     // gap: 2rem;
-    a {
+    .details_link {
       display: flex;
       flex-direction: column;
       margin-bottom: 1rem;
@@ -51,15 +51,25 @@ main {
       text-decoration: none;
       text-decoration-line: none;
       padding-left: 2rem;
+      cursor: default;
 
-      h3 {
+      h3,
+      p {
         padding-left: 2rem;
         text-transform: uppercase;
+      }
+      a h3 {
+        cursor: pointer;
       }
     }
   }
 }
-
+.edit {
+  padding-left: 2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
+}
 .blog-form {
   grid-area: createBlog;
   background: crimson;

@@ -8,6 +8,9 @@
       <div class="content">
         <h2><%= blog.title %></h2>
         <p><%= blog.body %></p>
+        <a class="edit" href="/api/blogs/edit/<%= blog._id %>">
+          &#10000; EDIT
+        </a>
       </div>
       <a class="delete" data-doc="<%= blog._id %>">
         <img src="/images/trashcan.svg" alt="delete icon" />
@@ -25,7 +28,7 @@
       });
 
       trashcan.addEventListener("click", (e) => {
-        const endpoint = `/blogs/${trashcan.dataset.doc}`;
+        const endpoint = `/api/blogs/${trashcan.dataset.doc}`;
 
         fetch(endpoint, {
           method: "DELETE",

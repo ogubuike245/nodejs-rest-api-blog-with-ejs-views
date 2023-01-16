@@ -1,35 +1,41 @@
 import express from "express";
-import morgan from "morgan";
 import { config } from "dotenv";
-import apicache from "apicache";
+import cookieParser from "cookie-parser";
+
+// import morgan from "morgan";
+// import apicache from "apicache";
 
 // FILE IMPORTS
 import { connectToDatabase } from "./config/database/mongoDatabase.js";
-import { middleWares } from "./middlewares/index.js";
+import { requireAuth, checkUser } from "./middlewares/index.js";
 import blogRoutes from "./routes/Blog/blogRoutes.js";
 import userRoutes from "./routes/User/userRoutes.js";
 
 //EXPRESS APP
 const app = express();
-// config();
+config();
+connectToDatabase(app);
 
-// MONGODB CONNECTION
-const cache = apicache.middleware;
-// app.use(cache("2 minutes"));
-cache("2 minutes"), connectToDatabase(app, config);
+
 
 // MIDDLEWARE AND STATIC FILES
-middleWares(app, express, morgan);
+app.use(express.static("./dist"));
+app.use(express.json());
+app.use(cookieParser());
 app.use((request, response, next) => {
   response.locals.path = request.path;
-  // response.locals.message = request.session.message;
-  // delete request.session.message;
   next();
 });
+// app.use(morgan("dev"));
 // VIEW ENGINE REGISTRATION
 app.set("view engine", "ejs");
 
+// MONGODB CONNECTION
+// const cache = apicache.middleware;
+// app.use(cache("2 minutes"));
+
 // APP PAGE ROUTES
+app.get("*", checkUser);
 app.get("/", (request, response) => {
   response.redirect("/api/blogs");
   // console.log(request);
@@ -40,11 +46,10 @@ app.get("/api/about", (request, response) => {
   // console.log(request);
 });
 
-// APP BLOG ROUTES
-app.use("/api/blogs", blogRoutes);
-
 //  BLOG USER ROUTES
 app.use("/api/user", userRoutes);
+// APP BLOG ROUTES
+app.use("/api/blogs", requireAuth, blogRoutes);
 
 // APP 404 PAGE
 app.use((request, response) => {

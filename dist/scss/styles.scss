@@ -10,23 +10,56 @@ main {
   font-family: "Courier New", Courier, monospace;
 }
 
-.navbar {
+body {
+  margin: 20px 40px;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  background: #fafafa;
+}
+h1,
+h2,
+h3,
+h4,
+ul,
+li,
+a,
+p,
+input,
+label,
+button,
+div,
+footer {
+  margin: 0;
+  padding: 0;
+  font-family: "Quicksand", sans-serif;
+  color: #444;
+}
+ul {
+  list-style-type: none;
+}
+a {
+  text-decoration: none;
+}
+nav {
   grid-area: navbar;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 2rem;
-  margin-bottom: 2rem;
-  border: 2px solid red;
-
-  a {
-    text-decoration: none;
-  }
-  .links {
-    list-style: none;
-    text-decoration: none;
+  align-items: flex-end;
+  margin-bottom: 120px;
+  ul {
     display: flex;
-    gap: 2rem;
+    align-items: center;
+    li {
+      margin-left: 20px;
+      a {
+        text-transform: uppercase;
+        font-weight: 700;
+        font-size: 0.8em;
+        display: block;
+        padding: 10px 16px;
+        letter-spacing: 2px;
+      }
+    }
   }
 }
 
@@ -109,6 +142,55 @@ main {
     h2 {
       font-family: monospace;
       text-transform: uppercase;
+    }
+  }
+}
+
+.auth-container {
+  border: 2px solid yellow;
+  margin-bottom: 50px;
+  // background: red;
+  .auth {
+    width: 360px;
+    margin: 0 auto;
+    padding: 50px;
+    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background: white;
+
+    h2 {
+      font-size: 2.4em;
+      font-weight: 900;
+      margin-bottom: 40px;
+    }
+    input {
+      padding: 10px 12px;
+      border-radius: 4px;
+      border: 1px solid #ddd;
+      font-size: 1em;
+      width: 100%;
+    }
+    label {
+      display: block;
+      margin: 20px 0 10px;
+    }
+    button {
+      margin-top: 30px;
+      border-radius: 36px;
+      background: #fee996;
+      border: 0;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-size: 0.8em;
+      display: block;
+      padding: 10px 16px;
+      letter-spacing: 2px;
+      cursor: pointer;
+
+      &:hover {
+        background: crimson;
+        color: whitesmoke;
+      }
     }
   }
 }

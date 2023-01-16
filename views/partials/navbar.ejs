@@ -1,10 +1,12 @@
-<nav class="navbar">
-  <div class="logo">
-    <a href="/"><p>OGUBUIKE EMEJURU</p></a>
-  </div>
-  <ul class="links">
-    <li><a href="/">Blogs</a></li>
-    <li><a href="/blogs/create">Create Blog</a></li>
-    <!-- <li><a href="/about">About</a></li> -->
+<nav>
+  <h1><a href="/">OGUBUIKE EMEJURU</a></h1>
+  <ul>
+    <% if (user) { %>
+    <li>Welcome, <%= user.email %></li>
+    <li><a href="/api/user/logout">Log out</a></li>
+    <% } else { %>
+    <li><a href="/api/user/login">Log in</a></li>
+    <li><a href="/api/user/signup" class="btn">Sign up</a></li>
+    <% } %>
   </ul>
 </nav>

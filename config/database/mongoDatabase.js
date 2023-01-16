@@ -1,8 +1,7 @@
 import mongoose from "mongoose";
 
-export const connectToDatabase = async (app, config, apicache) => {
-  config();
-  const { PORT, MONG0_DB_URI } = process.env;
+export const connectToDatabase = async (app) => {
+  const { API_PORT, MONG0_DB_URI } = process.env;
 
   await mongoose
     .set("strictQuery", false)
@@ -12,11 +11,11 @@ export const connectToDatabase = async (app, config, apicache) => {
     })
     .then((result) =>
       //LISTEN FOR REQUESTS
-      app.listen(PORT || 5000, () => {
+      app.listen(API_PORT || 5000, () => {
         console.log(
-          ` LISTENING ON PORT ${PORT} &`,
+          ` LISTENING ON PORT ${API_PORT} &`,
           "CONNECTED TO MONGODB DATABASE WITH THE FOLLOWING MODELS :",
-          result.models
+          result.models.user
         );
       })
     )

@@ -12,16 +12,20 @@
           &#10000; EDIT
         </a>
       </div>
-      <a class="delete" data-doc="<%= blog._id %>">
-        <img src="/images/trashcan.svg" alt="delete icon" />
-      </a>
+
+      <img
+        src="/images/trashcan.svg"
+        alt="delete icon"
+        class="delete"
+        data-doc="<%= blog._id %>"
+      />
     </div>
 
     <%- include("./partials/footer.ejs") %>
 
     <script>
       const arrowBack = document.querySelector("a.goBack");
-      const trashcan = document.querySelector("a.delete");
+      const trashcan = document.querySelector(".delete");
 
       arrowBack.addEventListener("click", () => {
         window.history.back();

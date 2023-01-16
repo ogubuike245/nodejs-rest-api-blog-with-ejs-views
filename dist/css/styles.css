@@ -57,13 +57,6 @@ main {
   cursor: pointer;
 }
 
-.edit {
-  padding-left: 2rem;
-  text-transform: uppercase;
-  cursor: pointer;
-  text-decoration: none;
-}
-
 .blog-form {
   grid-area: createBlog;
   background: crimson;
@@ -85,6 +78,14 @@ main {
 
 .delete {
   cursor: pointer;
+  background: red;
+}
+
+.edit {
+  padding-left: 2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .blog-details {

@@ -1,9 +1,10 @@
 import moment from "moment";
 import Blog from "../models/blogModel.js";
 
-// GET ROUTES CONTROLLERS
-
-//FIXME: FETCH DETAILS OF ALL BLOG DOCUMENTS FROM THE MONGODB DATABASE
+/**
+ * FIXME:FETCH DETAILS OF ALL BLOG DOCUMENTS FROM THE MONGODB DATABASE
+ * @param REQUEST_METHOD: GET - TYPE OF REQUEST
+ */
 
 export const getAllBlogs = (request, response) => {
   Blog.find()
@@ -20,7 +21,10 @@ export const getAllBlogs = (request, response) => {
     });
 };
 
-//FIXME: FETCH DETAILS OF A SINGLE BLOG FROM THE MONGODB DATABASE
+/**
+ * FIXME: FETCH DETAILS OF A SINGLE BLOG FROM THE MONGODB DATABASE
+ * @param REQUEST_METHOD: GET - TYPE OF REQUEST
+ */
 export const getDetailsOfSingleBlog = (request, response) => {
   const id = request.params.id;
   Blog.findById(id)
@@ -32,13 +36,19 @@ export const getDetailsOfSingleBlog = (request, response) => {
       response.render("404", { title: "Blog not found" });
     });
 };
-
-//FIXME: GO TO THE PAGE THAT DISPLAYS THE FORM TO CREATE A NEW BLOG DOCUMENT TO THE MONGODB DATABASE
+/**
+ * FIXME: GO TO THE PAGE THAT DISPLAYS THE FORM TO CREATE A NEW BLOG DOCUMENT TO THE MONGODB DATABASE
+ * @param REQUEST_METHOD: GET - TYPE OF REQUEST
+ */
 export const createNewBlogPage = (request, response) => {
   response.render("create", { title: "Create a new blog" });
 };
 
-//FIXME: GO TO THE PAGE THAT DISPLAYS THE FORM TO EDIT AN EXISTING BLOG DOCUMENT FROM THE MONGODB DATABASE
+/**
+ * FIXME: GO TO THE PAGE THAT DISPLAYS THE FORM TO EDIT AN EXISTING BLOG DOCUMENT FROM THE MONGODB DATABASE
+ * @param REQUEST_METHOD: GET - TYPE OF REQUEST
+ */
+
 export const editBlogPage = (request, response) => {
   const id = request.params.id;
   Blog.findById(id).then((result) => {
@@ -46,9 +56,10 @@ export const editBlogPage = (request, response) => {
   });
 };
 
-//POST ROUTES CONTROLLERS
-
-//FIXME: CREATE A NEW BLOG DOCUMENT TO THE MONGODB DATABASE
+/**
+ * FIXME: CREATE A NEW BLOG DOCUMENT TO THE MONGODB DATABASE
+ * @param REQUEST_METHOD: POST - TYPE OF REQUEST
+ */
 export const createNewBlogPost = (request, response) => {
   const blog = new Blog(request.body);
   blog
@@ -61,7 +72,11 @@ export const createNewBlogPost = (request, response) => {
     });
 };
 
-//FIXME: EDIT A SINGLE BLOG POST DOCUMENT
+/**
+ * FIXME: EDIT A SINGLE BLOG POST DOCUMENT
+ * @param REQUEST_METHOD: POST - TYPE OF REQUEST
+ *
+ */
 export const editSingleBlogPost = async (request, response) => {
   const { id } = request.params;
   console.log(request.body);
@@ -81,8 +96,10 @@ export const editSingleBlogPost = async (request, response) => {
     });
 };
 
-//DELETE ROUTES CONTROLLERS
-//FIXME: DELETE A BLOG DOCUMENT FROM THE MONGODB DATABASE
+/**
+ * FIXME: DELETE A BLOG DOCUMENT FROM THE MONGODB DATABASE
+ * @param REQUEST_METHOD: DELETE - TYPE OF REQUEST
+ */
 
 export const deleteBlog = async (request, response) => {
   const id = request.params.id;

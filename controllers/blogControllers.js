@@ -17,7 +17,7 @@ export const getAllBlogs = (request, response) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
     });
 };
 
@@ -32,7 +32,7 @@ export const getDetailsOfSingleBlog = (request, response) => {
       response.render("details", { blog: result, title: "Blog Details" });
     })
     .catch((err) => {
-      console.log(err);
+      // console.log(err);
       response.render("404", { title: "Blog not found" });
     });
 };
@@ -60,12 +60,12 @@ export const editBlogPage = (request, response) => {
  * FIXME: CREATE A NEW BLOG DOCUMENT TO THE MONGODB DATABASE
  * @param REQUEST_METHOD: POST - TYPE OF REQUEST
  */
-export const createNewBlogPost = (request, response) => {
-  const blog = new Blog(request.body);
+export const createNewBlogPost = async (request, response) => {
+  const blog = await new Blog(request.body);
   blog
     .save()
     .then((result) => {
-      response.redirect("/api/blogs");
+      response.json({ redirect: "/api/blogs", message: "DOCUMENT CREATED SUCESSFULLY" } );
     })
     .catch((err) => {
       console.log(err);
@@ -74,7 +74,7 @@ export const createNewBlogPost = (request, response) => {
 
 /**
  * FIXME: EDIT A SINGLE BLOG POST DOCUMENT
- * @param REQUEST_METHOD: POST - TYPE OF REQUEST
+ * @param {REQUEST_METHOD}: POST - TYPE OF REQUEST
  *
  */
 export const editSingleBlogPost = async (request, response) => {
@@ -88,8 +88,8 @@ export const editSingleBlogPost = async (request, response) => {
     }
   )
     .then((result) => {
-      console.log(result.title);
-      response.redirect("/api/blogs");
+      console.log("DOCUMENT EDITED SUCESSFULLY", result);
+      response.json({ redirect: "/api/blogs", message: "DOCUMENT EDITED SUCESSFULLY" } );
     })
     .catch((error) => {
       console.log(error);

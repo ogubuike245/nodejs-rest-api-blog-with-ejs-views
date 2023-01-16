@@ -17,7 +17,7 @@
             <p class="snippet">SNIPPET : <%= blog.snippet %></p>
             <p class="time"><%= moment(blog.updatedAt).fromNow() %></p>
 
-            <!-- <a class="edit" href="/blogs/<%= blog._id %>"> -->
+  
             <a class="edit" href="/api/blogs/edit/<%= blog._id %>">
               &#10000; EDIT
             </a>
@@ -30,7 +30,7 @@
       </div>
 
       <div class="blog-form">
-        <form action="/api/blogs" method="POST">
+        <form  method="POST">
           <label for="title">Blog title:</label>
           <input type="text" id="title" name="title" required />
           <label for="snippet">Blog snippet:</label>
@@ -44,12 +44,37 @@
       <%- include("./partials/footer.ejs") %>
     </main>
 
-    <script>
-      console.log("yes console");
-      console.log(blogs._id);
-      const blog = blogs._id;
-      // ? Reviews.find((about) => about._id === currentId)
-      // : null;
-    </script>
+   <script>
+ const form = document.querySelector("form");
+  
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    // GET FORM VALUES
+    const title = form.title.value;
+    const snippet = form.snippet.value;
+    const body = form.body.value;
+
+    try {
+      const res = await fetch(`/api/blogs/`, {
+        method: "POST",
+        body: JSON.stringify({ title, snippet,body }),
+        headers: { "Content-Type": "application/json" },
+      });
+      const data = await res.json();
+      setTimeout(function () {
+        alert(data.message);
+        window.location.href = data.redirect;
+}, 3000);
+     
+     
+    } catch (err) {
+      console.log(err);
+    }
+  });
+
+
+</script>
   </body>
 </html>

@@ -4,6 +4,7 @@ import {
   getDetailsOfSingleBlog,
   editBlogPage,
 } from "../../../controllers/blogControllers.js";
+import { requireAuth } from "../../../middlewares/index.js";
 
 export const GET = (router) => {
   /**
@@ -13,13 +14,14 @@ export const GET = (router) => {
   router.get("/", getAllBlogs);
 
   /**
-   * FETCH DETAILS OF A SINGLE BLOG FROM THE MONGODB DATABASE
+   * GO TO THE PAGE THAT DISPLAYS THE FORM TO CREATE A NEW BLOG DOCUMENT TO THE MONGODB DATABASE
    * @param REQUEST_METHOD: GET - TYPE OF REQUEST
    */
-  router.get("/create", createNewBlogPage);
+
+  router.get("/create", requireAuth, createNewBlogPage);
 
   /**
-   * GO TO THE PAGE THAT DISPLAYS THE FORM TO CREATE A NEW BLOG DOCUMENT TO THE MONGODB DATABASE
+   * FETCH DETAILS OF A SINGLE BLOG FROM THE MONGODB DATABASE
    * @param REQUEST_METHOD: GET - TYPE OF REQUEST
    */
   router.get("/:id", getDetailsOfSingleBlog);
@@ -28,5 +30,5 @@ export const GET = (router) => {
    * GO TO THE PAGE THAT DISPLAYS THE FORM TO EDIT AN EXISTING BLOG DOCUMENT FROM THE MONGODB DATABASE
    * @param REQUEST_METHOD: GET - TYPE OF REQUEST
    */
-  router.get("/edit/:id", editBlogPage);
+  router.get("/edit/:id", requireAuth, editBlogPage);
 };

@@ -4,8 +4,17 @@
   <body>
     <%- include("./partials/navbar.ejs") %>
     <div class="auth-container">
-      <form  action="/api/user/signup" class="auth">
+      <form action="/api/user/signup" class="auth">
         <h2>Sign up</h2>
+        <label for="firstname">firstname</label>
+        <input type="text" name="firstname" required />
+        <div class="firstname error"></div>
+        <label for="text">Lastname</label>
+        <input type="text" name="lastname" required />
+        <div class="lastname error"></div>
+        <label for="nickname">Nickname</label>
+        <input type="text" name="nickname" required />
+        <div class="nickname error"></div>
         <label for="email">Email</label>
         <input type="text" name="email" required />
         <div class="email error"></div>
@@ -18,43 +27,6 @@
 
     <%- include('partials/footer'); -%>
 
-    <script>
-      const form = document.querySelector("form");
-      const emailError = document.querySelector(".email.error");
-      const passwordError = document.querySelector(".password.error");
-
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-
-        // reset errors
-        emailError.textContent = "";
-        passwordError.textContent = "";
-
-        // get values
-        const email = form.email.value;
-        const password = form.password.value;
-
-        // console.log(email,password);
-
-        try {
-          const res = await fetch("/api/user/signup", {
-            method: "POST",
-            body: JSON.stringify({ email, password }),
-            headers: { "Content-Type": "application/json" },
-          });
-          const data = await res.json();
-          console.log(data);
-          if (data.errors) {
-            emailError.textContent = data.errors.email;
-            passwordError.textContent = data.errors.password;
-          }
-          if (data.user) {
-            location.assign("/");
-          }
-        } catch (err) {
-          console.log(err);
-        }
-      });
-    </script>
+    <script src="/js/signupScript.js"></script>
   </body>
 </html>

@@ -1,52 +1,12 @@
 // import moment from "moment";
 import jwt from "jsonwebtoken";
-import User from "../models/userModel.js";
+
 import { config } from "dotenv";
+import User from "../models/userModel.js";
+import { handleErrors } from "./errorHandling.js";
 config();
 
-const {JWT_SECRET} = process.env;
-
-// console.log(JWT_SECRET)
-
-// ERROR HANDLERS
-const handleErrors = (errorInfo) => {
-  console.log(errorInfo.message, errorInfo.code);
-  let errors = { email: "", password: "" };
-
-  // incorrect email
-  if (errorInfo.message === "incorrect email") {
-    errors.email = "That email is not registered";
-  }
-
-  // incorrect password
-  if (errorInfo.message === "incorrect password") {
-    errors.password = "That password is incorrect";
-  }
-
-  // duplicate email error
-  if (errorInfo.code === 11000) {
-    errors.email = "that email is already registered";
-    return errors;
-  }
-
-  // validation errors
-  if (errorInfo.message.includes("user validation failed")) {
-    Object.values(errorInfo.errors).forEach(({ properties }) => {
-      errors[properties.path] = properties.message;
-    });
-  }
-
-  return errors;
-};
-
-//CREATE A JSON WEB TOKEN
-const maximumAge = 3 * 24 * 60 * 60;
-const createToken = (id) => {
-
-  return jwt.sign({ id },JWT_SECRET, {
-    expiresIn: maximumAge,
-  });
-};
+const { JWT_SECRET } = process.env;
 
 // GET ROUTES CONTROLLERS
 
@@ -64,12 +24,17 @@ export const loginPage = (request, response) => {
   });
 };
 export const userSignup = async (request, response) => {
-  const { email, password } = request.body;
+  const { email, password, firstname, lastname, nickname } = request.body;
 
   try {
-    const user = await User.create({ email, password });
+    const user = await User.create({
+      email,
+      password,
+      firstname,
+      lastname,
+      nickname,
+    });
     // const user = await new User({ email, password });
-
 
     const token = createToken(user._id);
     response.cookie("jwt", token, {
@@ -77,10 +42,12 @@ export const userSignup = async (request, response) => {
       maximumAge: maximumAge * 1000,
     });
     response.status(201).json({ user: user._id });
-    console.log(user)
-  } catch (err) {
-    const errors = handleErrors(err);
-    response.status(400).json({ errors: "I SEE YOU" });
+    console.log(user);
+  } catch (error) {
+    // ERROR HANDLERS
+
+    const errors = handleErrors(error);
+    response.status(400).json({ errors });
   }
 };
 
@@ -96,6 +63,8 @@ export const userLogin = async (request, response) => {
     });
     response.status(200).json({ user: user._id });
   } catch (error) {
+    // ERROR HANDLERS
+
     const errors = handleErrors(error);
     response.status(400).json({ errors });
   }
@@ -104,4 +73,12 @@ export const userLogin = async (request, response) => {
 export const userLogout = async (request, response) => {
   response.cookie("jwt", "", { maximumAge: 1 });
   response.redirect("/");
+};
+
+//CREATE A JSON WEB TOKEN
+const maximumAge = 3 * 24 * 60 * 60;
+const createToken = (id) => {
+  return jwt.sign({ id }, JWT_SECRET, {
+    expiresIn: maximumAge,
+  });
 };

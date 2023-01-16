@@ -17,7 +17,6 @@
             <p class="snippet">SNIPPET : <%= blog.snippet %></p>
             <p class="time"><%= moment(blog.updatedAt).fromNow() %></p>
 
-  
             <a class="edit" href="/api/blogs/edit/<%= blog._id %>">
               &#10000; EDIT
             </a>
@@ -29,8 +28,9 @@
         </article>
       </div>
 
+      <% if (user) { %>
       <div class="blog-form">
-        <form  method="POST">
+        <form method="POST">
           <label for="title">Blog title:</label>
           <input type="text" id="title" name="title" required />
           <label for="snippet">Blog snippet:</label>
@@ -40,41 +40,37 @@
           <button>Submit</button>
         </form>
       </div>
-
-      <%- include("./partials/footer.ejs") %>
+      <% } else { %>
+      <h1>LOGIN TO CREATE / EDIT A POST</h1>
+      <% } %> <%- include("./partials/footer.ejs") %>
     </main>
 
-   <script>
- const form = document.querySelector("form");
-  
+    <script>
+      const form = document.querySelector("form");
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    // GET FORM VALUES
-    const title = form.title.value;
-    const snippet = form.snippet.value;
-    const body = form.body.value;
+        // GET FORM VALUES
+        const title = form.title.value;
+        const snippet = form.snippet.value;
+        const body = form.body.value;
 
-    try {
-      const res = await fetch(`/api/blogs/`, {
-        method: "POST",
-        body: JSON.stringify({ title, snippet,body }),
-        headers: { "Content-Type": "application/json" },
+        try {
+          const res = await fetch(`/api/blogs/`, {
+            method: "POST",
+            body: JSON.stringify({ title, snippet, body }),
+            headers: { "Content-Type": "application/json" },
+          });
+          const data = await res.json();
+          setTimeout(function () {
+            alert(data.message);
+            window.location.href = data.redirect;
+          }, 3000);
+        } catch (err) {
+          console.log(err);
+        }
       });
-      const data = await res.json();
-      setTimeout(function () {
-        alert(data.message);
-        window.location.href = data.redirect;
-}, 3000);
-     
-     
-    } catch (err) {
-      console.log(err);
-    }
-  });
-
-
-</script>
+    </script>
   </body>
 </html>

@@ -7,7 +7,7 @@ import cookieParser from "cookie-parser";
 
 // FILE IMPORTS
 import { connectToDatabase } from "./config/database/mongoDatabase.js";
-import { requireAuth, checkUser } from "./middlewares/index.js";
+import { checkUser } from "./middlewares/index.js";
 import blogRoutes from "./routes/Blog/blogRoutes.js";
 import userRoutes from "./routes/User/userRoutes.js";
 
@@ -15,8 +15,6 @@ import userRoutes from "./routes/User/userRoutes.js";
 const app = express();
 config();
 connectToDatabase(app);
-
-
 
 // MIDDLEWARE AND STATIC FILES
 app.use(express.static("./dist"));
@@ -49,7 +47,7 @@ app.get("/api/about", (request, response) => {
 //  BLOG USER ROUTES
 app.use("/api/user", userRoutes);
 // APP BLOG ROUTES
-app.use("/api/blogs", requireAuth, blogRoutes);
+app.use("/api/blogs", blogRoutes);
 
 // APP 404 PAGE
 app.use((request, response) => {

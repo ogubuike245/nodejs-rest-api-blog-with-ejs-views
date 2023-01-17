@@ -14,7 +14,7 @@ form.addEventListener("submit", async (e) => {
   const password = form.password.value;
 
   try {
-    const res = await fetch("/api/v1/user/login", {
+    const res = await fetch("gubinodejsblog.onrender.com/api/v1/user/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },

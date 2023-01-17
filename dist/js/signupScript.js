@@ -25,7 +25,7 @@ form.addEventListener("submit", async (event) => {
   // console.log(email,password);
 
   try {
-    const res = await fetch("/api/v1/user/signup", {
+    const res = await fetch("gubinodejsblog.onrender.com/api/v1/user/signup", {
       method: "POST",
       body: JSON.stringify({
         email,

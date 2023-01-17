@@ -3,27 +3,26 @@
 
   <body>
     <%- include("./partials/navbar.ejs") %>
-    <div class="auth-container">
-      <form action="/api/user/signup" class="auth">
-        <h2>Sign up</h2>
-        <label for="firstname">firstname</label>
-        <input type="text" name="firstname" required />
-        <div class="firstname error"></div>
-        <label for="text">Lastname</label>
-        <input type="text" name="lastname" required />
-        <div class="lastname error"></div>
-        <label for="nickname">Nickname</label>
-        <input type="text" name="nickname" required />
-        <div class="nickname error"></div>
-        <label for="email">Email</label>
-        <input type="text" name="email" required />
-        <div class="email error"></div>
-        <label for="password">Password</label>
-        <input type="password" name="password" required />
-        <div class="password error"></div>
-        <button>Sign up</button>
-      </form>
-    </div>
+
+    <form>
+      <h2>Sign up</h2>
+      <label for="firstname">firstname</label>
+      <input type="text" name="firstname" required />
+      <div class="firstname error"></div>
+      <label for="text">Lastname</label>
+      <input type="text" name="lastname" required />
+      <div class="lastname error"></div>
+      <label for="nickname">Nickname</label>
+      <input type="text" name="nickname" required />
+      <div class="nickname error"></div>
+      <label for="email">Email</label>
+      <input type="text" name="email" required />
+      <div class="email error"></div>
+      <label for="password">Password</label>
+      <input type="password" name="password" required />
+      <div class="password error"></div>
+      <button>Sign up</button>
+    </form>
 
     <%- include('partials/footer'); -%>
 

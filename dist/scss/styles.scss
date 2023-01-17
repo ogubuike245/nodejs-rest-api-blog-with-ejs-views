@@ -1,20 +1,11 @@
-main {
-  display: grid;
-  grid-template-areas:
-    "navbar       navbar"
-    "displayBlogs createBlog"
-    "footer       footer";
-  gap: 2rem;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 100px 2fr 100px;
-  font-family: "Courier New", Courier, monospace;
-}
+// GLOBAL STYLES
 
 body {
   margin: 20px 40px;
   font-size: 1.2rem;
   letter-spacing: 1px;
   background: #fafafa;
+  font-family: monospace;
 }
 h1,
 h2,
@@ -31,21 +22,30 @@ div,
 footer {
   margin: 0;
   padding: 0;
-  font-family: "Quicksand", sans-serif;
   color: #444;
 }
 ul {
   list-style-type: none;
 }
-a {
-  text-decoration: none;
+
+main {
+  display: grid;
+  grid-template-areas:
+    "navbar       navbar"
+    "displayBlogs createBlog"
+    "footer       footer";
+  gap: 2rem;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 100px 2fr 100px;
 }
+
+// NAVIGATION BAR
 nav {
   grid-area: navbar;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 120px;
+  align-items: center;
+  margin: auto;
   ul {
     display: flex;
     align-items: center;
@@ -55,13 +55,14 @@ nav {
         text-transform: uppercase;
         font-weight: 700;
         font-size: 0.8em;
-        display: block;
         padding: 10px 16px;
         letter-spacing: 2px;
       }
     }
   }
 }
+
+// DISPLAY ALL BLOG DETAILS HOMEPAGE
 
 .blog-list {
   grid-area: displayBlogs;
@@ -74,54 +75,41 @@ nav {
     padding-left: 2rem;
   }
   .single {
-    // gap: 2rem;
     .details_link {
       display: flex;
       flex-direction: column;
       margin-bottom: 1rem;
-      border: 1px solid red;
+      border-bottom: 1px solid red;
       border-left: 3px solid green;
       text-decoration: none;
       text-decoration-line: none;
       padding-left: 2rem;
-      cursor: default;
+      // cursor: default;
 
       h3,
       p {
         padding-left: 2rem;
         text-transform: uppercase;
       }
-      a h3 {
+      a {
         cursor: pointer;
+        border: green;
       }
     }
   }
 }
 
-.blog-form {
-  grid-area: createBlog;
-  background: crimson;
-  height: 300px;
-  margin-bottom: 2rem;
+// EDIT BLOG DETAILS PAGE
 
-  form {
-    display: flex;
-    flex-direction: column;
-    padding: 2rem;
-    gap: 0.5rem;
-  }
-}
-
+// SINGLE BLOG DETAILS PAGE
 .goBack {
-  // background: red;
   font-size: 3rem;
   color: orange;
   cursor: pointer;
 }
 
 .delete {
-  cursor: pointer;
-  background: red;
+  color: red;
 }
 
 .edit {
@@ -144,57 +132,49 @@ nav {
       text-transform: uppercase;
     }
   }
-}
 
-.auth-container {
-  border: 2px solid yellow;
-  margin-bottom: 50px;
-  // background: red;
-  .auth {
-    width: 360px;
-    margin: 0 auto;
-    padding: 50px;
-    box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    background: white;
-
-    h2 {
-      font-size: 2.4em;
-      font-weight: 900;
-      margin-bottom: 40px;
-    }
-    input {
-      padding: 10px 12px;
-      border-radius: 4px;
-      border: 1px solid #ddd;
-      font-size: 1em;
-      width: 100%;
-    }
-    label {
-      display: block;
-      margin: 20px 0 10px;
-    }
+  .actions {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
     button {
-      margin-top: 30px;
-      border-radius: 36px;
-      background: #fee996;
-      border: 0;
-      text-transform: uppercase;
-      font-weight: 700;
-      font-size: 0.8em;
-      display: block;
-      padding: 10px 16px;
-      letter-spacing: 2px;
-      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px;
+      width: 100px;
 
-      &:hover {
-        background: crimson;
-        color: whitesmoke;
-      }
+      cursor: pointer;
+    }
+  }
+}
+.blog-form {
+  grid-area: createBlog;
+  background: crimson;
+  height: 100%;
+  width: 350px;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 0px auto auto auto;
+
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 2rem;
+    gap: 2rem;
+    width: 80%;
+
+    label {
+      color: whitesmoke;
     }
   }
 }
 
+// FOOTER STYLES
 footer {
   grid-area: footer;
   background: green;
@@ -202,6 +182,11 @@ footer {
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-top: 2rem;
+
+  p {
+    color: whitesmoke;
+  }
 }
 
 @media (max-width: 599px) {

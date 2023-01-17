@@ -3,7 +3,7 @@ import User from "../models/userModel.js";
 import { config } from "dotenv";
 config();
 
-const {JWT_SECRET} = process.env;
+const { JWT_SECRET } = process.env;
 
 export const requireAuth = (request, response, next) => {
   const token = request.cookies.jwt;
@@ -13,14 +13,14 @@ export const requireAuth = (request, response, next) => {
     jwt.verify(token, JWT_SECRET, (error, decodedToken) => {
       if (error) {
         console.log(error.message);
-        response.redirect("/api/user/login");
+        response.redirect("/api/v1/user/login");
       } else {
         console.log("TOKEN DECODED");
         next();
       }
     });
   } else {
-    response.redirect("/api/user/login");
+    response.redirect("/api/v1/user/login");
   }
 };
 

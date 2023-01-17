@@ -16,8 +16,8 @@ export const getAllBlogs = (request, response) => {
         moment: moment,
       });
     })
-    .catch((err) => {
-      // console.log(err);
+    .catch((error) => {
+      console.log(error);
     });
 };
 
@@ -29,11 +29,14 @@ export const getDetailsOfSingleBlog = (request, response) => {
   const id = request.params.id;
   Blog.findById(id)
     .then((result) => {
-      response.render("details", { blog: result, title: "Blog Details" });
+      response.render("details", {
+        blog: result,
+        moment: moment,
+        title: "Blog Details",
+      });
     })
-    .catch((err) => {
-      // console.log(err);
-      response.render("404", { title: "Blog not found" });
+    .catch((error) => {
+      response.render("404", { title: "Blog not found", error: error });
     });
 };
 /**
@@ -65,7 +68,10 @@ export const createNewBlogPost = async (request, response) => {
   blog
     .save()
     .then((result) => {
-      response.json({ redirect: "/api/blogs", message: "DOCUMENT CREATED SUCESSFULLY" } );
+      response.json({
+        redirect: "/api/v1/blogs",
+        message: "DOCUMENT CREATED SUCESSFULLY",
+      });
     })
     .catch((err) => {
       console.log(err);
@@ -89,7 +95,10 @@ export const editSingleBlogPost = async (request, response) => {
   )
     .then((result) => {
       console.log("DOCUMENT EDITED SUCESSFULLY", result);
-      response.json({ redirect: "/api/blogs", message: "DOCUMENT EDITED SUCESSFULLY" } );
+      response.json({
+        redirect: "/api/v1/blogs",
+        message: "DOCUMENT EDITED SUCESSFULLY",
+      });
     })
     .catch((error) => {
       console.log(error);
@@ -105,8 +114,10 @@ export const deleteBlog = async (request, response) => {
   const id = request.params.id;
   await Blog.findByIdAndDelete(id)
     .then((result) => {
-      response.json({ redirect: "/api/blogs" });
-      // console.log(result);
+      response.json({
+        redirect: "/api/v1/blogs",
+        message: "DOCUMENT DELETED SUCESSFULLY",
+      });
     })
     .catch((error) => {
       console.log(error);

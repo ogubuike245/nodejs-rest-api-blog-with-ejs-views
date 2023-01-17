@@ -5,7 +5,7 @@
     <%- include("./partials/navbar.ejs") %>
     <a class="goBack"> &larr; </a>
     <div class="blog-form">
-      <form  method="POST"  data-doc="<%= blog._id %>">
+      <form data-doc="<%= blog._id %>">
         <label for="title">Blog title:</label>
         <input
           type="text"
@@ -30,42 +30,6 @@
 
     <%- include("./partials/footer.ejs") %>
 
-    <script>
-      const arrowBack = document.querySelector("a.goBack");
-
-      arrowBack.addEventListener("click", () => {
-        window.history.back();
-      });
-
-      const form = document.querySelector("form");
-  
-
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        // get values
-        const title = form.title.value;
-        const snippet = form.snippet.value;
-        const body = form.body.value;
-
-        try {
-          const res = await fetch(`/api/blogs/edit/${form.dataset.doc}`, {
-            method: "POST",
-            body: JSON.stringify({ title, snippet,body }),
-            headers: { "Content-Type": "application/json" },
-          });
-          const data = await res.json();
-          setTimeout(function () {
-            
-            alert(data.message);
-            window.location.href = data.redirect;
-}, 3000);
-         
-         
-        } catch (err) {
-          console.log(err);
-        }
-      });
-    </script>
+    <script src="/js/editSingleBlogPageScript.js"></script>
   </body>
 </html>

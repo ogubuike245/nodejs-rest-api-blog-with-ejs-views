@@ -3,10 +3,10 @@
   <ul>
     <% if (user) { %>
     <li>Welcome, <%= user.nickname %></li>
-    <li><a href="/api/user/logout">Log out</a></li>
+    <li><a href="/api/v1/user/logout">Log out</a></li>
     <% } else { %>
-    <li><a href="/api/user/login">Log in</a></li>
-    <li><a href="/api/user/signup" class="btn">Sign up</a></li>
+    <li><a href="/api/v1/user/login">Log in</a></li>
+    <li><a href="/api/v1/user/signup" class="btn">Sign up</a></li>
     <% } %>
   </ul>
 </nav>

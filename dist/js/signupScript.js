@@ -25,7 +25,7 @@ form.addEventListener("submit", async (event) => {
   // console.log(email,password);
 
   try {
-    const res = await fetch("/api/user/signup", {
+    const res = await fetch("/api/v1/user/signup", {
       method: "POST",
       body: JSON.stringify({
         email,
@@ -48,7 +48,7 @@ form.addEventListener("submit", async (event) => {
     if (data.user) {
       location.assign("/");
     }
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 });

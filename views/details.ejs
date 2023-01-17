@@ -3,44 +3,33 @@
 
   <body>
     <%- include("./partials/navbar.ejs") %>
-    <a class="goBack"> &larr; </a>
+
+    <a class="goBack" onclick="window.history.back()"> &larr; </a>
     <div class="blog-details">
       <div class="content">
-        <h2><%= blog.title %></h2>
-        <p><%= blog.body %></p>
-        <a class="edit" href="/api/blogs/edit/<%= blog._id %>">
-          &#10000; EDIT
-        </a>
+        <h2>TITLE : <%= blog.title %></h2>
+        <h2>SNIPPET : <%= blog.snippet %></h2>
+        <p>BODY : <%= blog.body %></p>
+        <p class="time">POSTED: <%= moment(blog.updatedAt).fromNow() %></p>
       </div>
 
-      <img
-        src="/images/trashcan.svg"
-        alt="delete icon"
-        class="delete"
-        data-doc="<%= blog._id %>"
-      />
+      <% if (user) { %>
+      <div class="actions">
+        <a class="edit" href="/api/v1/blogs/edit/<%= blog._id %>">
+          <button>
+            <img src="/images/edit.png" alt="delete icon" class="delete" />
+            EDIT
+          </button>
+        </a>
+
+        <button class="delete" data-doc="<%= blog._id %>">
+          <img src="/images/trashcan.svg" alt="delete icon" />DELETE
+        </button>
+      </div>
+      <% } else { %> <% } %>
     </div>
 
     <%- include("./partials/footer.ejs") %>
-
-    <script>
-      const arrowBack = document.querySelector("a.goBack");
-      const trashcan = document.querySelector(".delete");
-
-      arrowBack.addEventListener("click", () => {
-        window.history.back();
-      });
-
-      trashcan.addEventListener("click", (e) => {
-        const endpoint = `/api/blogs/${trashcan.dataset.doc}`;
-
-        fetch(endpoint, {
-          method: "DELETE",
-        })
-          .then((response) => response.json())
-          .then((data) => (window.location.href = data.redirect))
-          .catch((err) => console.log(err));
-      });
-    </script>
+    <script src="/js/singleBlogDetailsPageScript.js"></script>
   </body>
 </html>

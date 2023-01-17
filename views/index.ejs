@@ -11,15 +11,17 @@
         <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
         <article class="single">
           <div class="details_link">
-            <a href="/api/blogs/<%= blog._id %>">
+            <a href="/api/v1/blogs/<%= blog._id %>">
               <h3 class="title">TITLE : <%= blog.title %></h3>
             </a>
             <p class="snippet">SNIPPET : <%= blog.snippet %></p>
-            <p class="time"><%= moment(blog.updatedAt).fromNow() %></p>
+            <p class="time">POSTED :<%= moment(blog.updatedAt).fromNow() %></p>
 
-            <a class="edit" href="/api/blogs/edit/<%= blog._id %>">
+            <% if (user) { %>
+            <a class="edit" href="/api/v1/blogs/edit/<%= blog._id %>">
               &#10000; EDIT
             </a>
+            <% } else { %> <% } %>
           </div>
 
           <% }) %> <% } else { %>
@@ -45,32 +47,6 @@
       <% } %> <%- include("./partials/footer.ejs") %>
     </main>
 
-    <script>
-      const form = document.querySelector("form");
-
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        // GET FORM VALUES
-        const title = form.title.value;
-        const snippet = form.snippet.value;
-        const body = form.body.value;
-
-        try {
-          const res = await fetch(`/api/blogs/`, {
-            method: "POST",
-            body: JSON.stringify({ title, snippet, body }),
-            headers: { "Content-Type": "application/json" },
-          });
-          const data = await res.json();
-          setTimeout(function () {
-            alert(data.message);
-            window.location.href = data.redirect;
-          }, 3000);
-        } catch (err) {
-          console.log(err);
-        }
-      });
-    </script>
+    <script src="/js/createNewBlogScript.js"></script>
   </body>
 </html>

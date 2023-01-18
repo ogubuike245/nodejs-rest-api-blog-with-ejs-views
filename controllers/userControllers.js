@@ -1,12 +1,18 @@
 // import moment from "moment";
 import jwt from "jsonwebtoken";
-
-import { config } from "dotenv";
 import User from "../models/userModel.js";
 import { handleErrors } from "./errorHandling.js";
-config();
+import { config } from "../config/config.js";
 
-const { JWT_SECRET } = process.env;
+const {
+  API_PORT,
+  MONG0_DB_URI,
+  JWT_SECRET,
+  LOGIN_USER_URL,
+  SIGNUP_USER_URL,
+  DEV_LOGIN_USER,
+  DEV_SIGNUP_USER,
+} = config;
 
 // GET ROUTES CONTROLLERS
 
@@ -15,12 +21,20 @@ const { JWT_SECRET } = process.env;
 export const signupPage = (request, response) => {
   response.render("signup", {
     title: "Signup",
+    LOGIN_USER_URL,
+    SIGNUP_USER_URL,
+    DEV_LOGIN_USER,
+    DEV_SIGNUP_USER,
   });
 };
 
 export const loginPage = (request, response) => {
   response.render("login", {
     title: "Login",
+    LOGIN_USER_URL,
+    SIGNUP_USER_URL,
+    DEV_LOGIN_USER,
+    DEV_SIGNUP_USER,
   });
 };
 export const userSignup = async (request, response) => {

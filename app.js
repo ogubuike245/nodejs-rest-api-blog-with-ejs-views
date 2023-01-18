@@ -1,16 +1,15 @@
 import express from "express";
-import { config } from "dotenv";
 import cookieParser from "cookie-parser";
 
 // FILE IMPORTS
-import { connectToDatabase } from "./config/database/mongoDatabase.js";
+import { connectToDatabase } from "./config/mongoDatabase.js";
 import { checkUser } from "./middlewares/index.js";
 import blogRoutes from "./routes/Blog/blogRoutes.js";
 import userRoutes from "./routes/User/userRoutes.js";
 
 //EXPRESS APP
 const app = express();
-config();
+// config();
 // MONGODB CONNECTION
 connectToDatabase(app);
 

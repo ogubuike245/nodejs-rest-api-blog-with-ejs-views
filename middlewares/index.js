@@ -1,9 +1,8 @@
 import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
-import { config } from "dotenv";
-config();
+import { config } from "../config/config.js";
 
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET } = config;
 
 export const requireAuth = (request, response, next) => {
   const token = request.cookies.jwt;

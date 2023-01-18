@@ -4,7 +4,7 @@
   <body>
     <%- include("./partials/navbar.ejs") %>
 
-    <form>
+    <form data-url="<%= LOGIN_USER_URL %>">
       <h2>Login</h2>
       <label for="email">Email</label>
       <input type="text" name="email" />
@@ -12,6 +12,7 @@
       <label for="password">Password</label>
       <input type="password" name="password" />
       <div class="password error"></div>
+
       <button>login</button>
     </form>
 

@@ -1,4 +1,5 @@
 const form = document.querySelector("form");
+const BASE_URL = document.querySelector("form");
 const emailError = document.querySelector(".email.error");
 const passwordError = document.querySelector(".password.error");
 
@@ -14,7 +15,7 @@ form.addEventListener("submit", async (e) => {
   const password = form.password.value;
 
   try {
-    const res = await fetch("gubinodejsblog.onrender.com/api/v1/user/login", {
+    const res = await fetch(`${BASE_URL.dataset.url}`, {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },

@@ -1,4 +1,5 @@
 const form = document.querySelector("form");
+const BASE_URL = document.querySelector("form");
 const firstnameError = document.querySelector(".firstname.error");
 const lastnameError = document.querySelector(".lastname.error");
 const nicknameError = document.querySelector(".nickname.error");
@@ -22,10 +23,8 @@ form.addEventListener("submit", async (event) => {
   const email = form.email.value;
   const password = form.password.value;
 
-  // console.log(email,password);
-
   try {
-    const res = await fetch("gubinodejsblog.onrender.com/api/v1/user/signup", {
+    const res = await fetch(`${BASE_URL.dataset.url}`, {
       method: "POST",
       body: JSON.stringify({
         email,

@@ -16,7 +16,7 @@ form.addEventListener("submit", async (e) => {
   const password = form.password.value;
 
   try {
-    const res = await fetch(`${BASE_URL.dataset.url}`, {
+    const response = await fetch(`${BASE_URL.dataset.url}`, {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json",

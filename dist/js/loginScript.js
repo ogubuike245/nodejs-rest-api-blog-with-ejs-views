@@ -1,3 +1,4 @@
+
 const form = document.querySelector("form");
 const BASE_URL = document.querySelector("form");
 const emailError = document.querySelector(".email.error");
@@ -18,9 +19,10 @@ form.addEventListener("submit", async (e) => {
     const res = await fetch(`${BASE_URL.dataset.url}`, {
       method: "POST",
       body: JSON.stringify({ email, password }),
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json",
+        "Accept":"application/json" },
     });
-    const data = await res.json();
+    const data = await JSON.parse(res);
     console.log(data);
     if (data.errors) {
       emailError.textContent = data.errors.email;

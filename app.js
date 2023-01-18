@@ -15,7 +15,7 @@ connectToDatabase(app);
 
 // MIDDLEWARE AND STATIC FILES
 app.use(express.static("./dist"));
-app.use(express.json({ extended: true }));
+app.use(express.json());
 app.use(cookieParser());
 app.use((request, response, next) => {
   response.locals.path = request.path;

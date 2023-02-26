@@ -14,7 +14,8 @@ export const requireAuth = (request, response, next) => {
         console.log(error.message);
         response.redirect("/api/v1/user/login");
       } else {
-        console.log("TOKEN DECODED");
+      
+      
         next();
       }
     });
@@ -33,7 +34,9 @@ export const checkUser = (request, response, next) => {
         next();
       } else {
         let user = await User.findById(decodedToken.id);
-        response.locals.user = user;
+       
+        request.user = user ;
+         response.locals.user = request.user;
         next();
       }
     });

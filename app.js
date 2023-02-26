@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 
 // APP PAGE ROUTES
-app.user(checkUser);
+app.use(checkUser);
 app.get("/", (request, response) => {
   response.redirect("/api/v1/blogs");
 });

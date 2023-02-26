@@ -17,16 +17,13 @@ connectToDatabase(app);
 app.use(express.static("./dist"));
 app.use(express.json());
 app.use(cookieParser());
-app.use((request, response, next) => {
-  response.locals.path = request.path;
-  next();
-});
+
 
 // VIEW ENGINE REGISTRATION
 app.set("view engine", "ejs");
 
 // APP PAGE ROUTES
-app.get("*", checkUser);
+app.user(checkUser);
 app.get("/", (request, response) => {
   response.redirect("/api/v1/blogs");
 });

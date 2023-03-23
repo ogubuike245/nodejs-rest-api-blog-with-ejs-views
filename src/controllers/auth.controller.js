@@ -5,10 +5,10 @@ import { registerUserService } from "../services/auth.service.js";
 //FIXME: FETCH DETAILS OF ALL BLOG DOCUMENTS FROM THE MONGODB DATABASE
 
 export const signupPage = (request, response) => {
-  response.send("signup");
-  // response.render("signup", {
-  //   title: "Signup",
-  // });
+  // response.send("signup");
+  response.render("signup", {
+    title: "Signup",
+  });
 };
 
 export const userSignupController = async (request, response) => {

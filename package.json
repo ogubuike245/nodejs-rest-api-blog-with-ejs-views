@@ -1,13 +1,13 @@
 {
-  "name": "blog",
+  "name": "Node-Js-Blog",
   "version": "1.0.0",
   "description": "NODE JS BLOG",
-  "main": "app.js",
+  "main": "src/app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=production node -r dotenv/config app.js",
-    "dev": "nodemon -r dotenv/config app.js"
+    "start": "NODE_ENV=production node -r dotenv/config src/app.js",
+    "dev": "nodemon -r dotenv/config src/app.js"
   },
   "repository": {
     "type": "git",

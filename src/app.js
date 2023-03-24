@@ -12,7 +12,7 @@ const {
   allowedMethods,
   checkForLoggedInUser,
 } = require("./middlewares/auth.middleware.js");
-const blogRoutes = require("./routes/blog.route.js");
+// const blogRoutes = require("./routes/blog.route.js");
 const authRoutes = require("./routes/auth.route.js");
 const { connectToDatabase } = require("./config/config.js");
 
@@ -23,7 +23,7 @@ connectToDatabase(app);
 app.set("view engine", "ejs");
 app.set("views", path.join(path.resolve(), "src/views"));
 
-app.use(express.static("./dist"));
+app.use(express.static("./public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

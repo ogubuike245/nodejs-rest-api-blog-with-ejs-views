@@ -1,18 +1,22 @@
-import mongoose from "mongoose";
-const { API_PORT, MONGO_DB_URI } = process.env;
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
-export const connectToDatabase = async (app) => {
-  await mongoose
-    .set("strictQuery", false)
-    .connect(MONGO_DB_URI, {
+dotenv.config();
+const { MONGO_DB_URI, API_PORT } = process.env;
+
+exports.connectToDatabase = async function (app) {
+  try {
+    await mongoose.set("strictQuery", false);
+    await mongoose.connect(MONGO_DB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    })
-    .then((result) =>
-      //LISTEN FOR REQUESTS
-      app.listen(API_PORT || 5000, () => {
-        console.log(` LISTENING ON PORT ${API_PORT} `);
-      })
-    )
-    .catch((err) => console.log(err));
+    });
+
+    //LISTEN FOR REQUESTS
+    app.listen(API_PORT || 5000, () => {
+      console.log(` LISTENING ON PORT ${API_PORT} and connected to database`);
+    });
+  } catch (e) {
+    console.error(e);
+  }
 };

@@ -1,5 +1,5 @@
-import jwt from "jsonwebtoken";
-import User from "../models/user.model.js";
+const jwt = require("jsonwebtoken");
+const User = require("../models/user.model.js");
 
 // CHECK IF THERE IS A LOGGED IN USER FROM THE JWT TOKEN
 
@@ -89,4 +89,9 @@ const allowedMethods = async (request, response, next) => {
   }
 };
 
-export { tokenVerification, isLoggedIn, checkForLoggedInUser, allowedMethods };
+module.exports = {
+  tokenVerification,
+  isLoggedIn,
+  checkForLoggedInUser,
+  allowedMethods,
+};

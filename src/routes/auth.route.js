@@ -1,8 +1,8 @@
-import express from "express";
-import {
+const express = require("express");
+const {
   signupPage,
   userSignupController,
-} from "../controllers/auth.controller.js";
+} = require("../controllers/auth.controller.js");
 
 // FILE IMPORTS
 
@@ -10,4 +10,4 @@ const authRouter = express.Router();
 authRouter.get("/signup", signupPage);
 authRouter.post("/signup", userSignupController);
 
-export default authRouter;
+module.exports = authRouter;

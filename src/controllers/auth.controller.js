@@ -1,17 +1,19 @@
-import { registerUserService } from "../services/auth.service.js";
+const { registerUserService } = require("../services/auth.service.js");
 
 // GET ROUTES CONTROLLERS
 
 //FIXME: FETCH DETAILS OF ALL BLOG DOCUMENTS FROM THE MONGODB DATABASE
 
-export const signupPage = (request, response) => {
-  // response.send("signup");
-  response.render("signup", {
-    title: "Signup",
+const signupPage = (request, response) => {
+  return response.status(200).json({
+    text: "Signup",
   });
+  // response.render("signup", {
+  //   title: "Signup",
+  // });
 };
 
-export const userSignupController = async (request, response) => {
+const userSignupController = async (request, response) => {
   const { email, password, firstname, lastname, nickname } = request.body;
 
   try {
@@ -40,4 +42,9 @@ export const userSignupController = async (request, response) => {
       message: "An error occurred while registering the user.",
     });
   }
+};
+
+module.exports = {
+  signupPage,
+  userSignupController,
 };

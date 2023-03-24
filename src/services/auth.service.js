@@ -1,11 +1,12 @@
-import bcrypt from "bcrypt";
-import User from "../models/user.model.js";
+const bcrypt = require("bcrypt");
+const User = require("../models/user.model");
 
-export const registerUserService = async function (userData) {
+exports.registerUserService = async function (userData) {
   try {
     const { email, password, firstname, lastname, nickname } = userData;
 
     const existingUser = await User.findOne({ email });
+    const existingNickname = await User.findOne({ nickname });
 
     if (existingUser) {
       return {
@@ -15,11 +16,19 @@ export const registerUserService = async function (userData) {
         status: 400,
       };
     }
+    if (existingNickname) {
+      return {
+        error: true,
+        message:
+          "A user with that nickname already exists. Please try again with a different nickname.",
+        status: 400,
+      };
+    }
 
     // Hash password and save the user data along with the encrypted OTP in the database
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = await new User({
+    const newUser = new User({
       email,
       firstname,
       lastname,
@@ -31,7 +40,7 @@ export const registerUserService = async function (userData) {
 
     return {
       success: true,
-      message: "Registration successful! ",
+      message: "Registration successful!",
       status: 201,
     };
   } catch (error) {

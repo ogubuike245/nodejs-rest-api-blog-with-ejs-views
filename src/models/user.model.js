@@ -1,7 +1,5 @@
-import mongoose from "mongoose";
-import pkg from "validator";
-import bcrypt from "bcrypt";
-const { isEmail } = pkg;
+const mongoose = require("mongoose");
+const { isEmail } = require("validator");
 
 const userSchema = new mongoose.Schema({
   firstname: {
@@ -36,4 +34,4 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("user", userSchema);
 
-export default User;
+module.exports = User;

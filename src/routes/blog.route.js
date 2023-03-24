@@ -1,7 +1,7 @@
-import express from "express";
+const express = require("express");
 
 // FILE IMPORTS
 
 const blogRouter = express.Router();
 
-export default blogRouter;
+module.exports = blogRouter;

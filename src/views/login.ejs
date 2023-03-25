@@ -20,66 +20,30 @@
         <div
           class="lg:w-2/6 md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0"
         >
-          <form>
+          <form class="loginForm">
             <h2 class="text-white text-lg font-medium title-font mb-5">
-              Sign Up
+              Login
             </h2>
-            <div class="relative mb-4">
-              <label for="full-name" class="leading-7 text-sm text-gray-400"
-                >First Name</label
-              >
-              <input
-                autocomplete
-                type="text"
-                name="firstname"
-                required
-                type="text"
-                id="firstname"
-                class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-green-900 rounded border border-gray-600 focus:border-green-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              />
-            </div>
-            <div class="relative mb-4">
-              <label for="full-name" class="leading-7 text-sm text-gray-400"
-                >Last Name</label
-              >
-              <input
-                autocomplete
-                type="text"
-                name="lastname"
-                required
-                class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-green-900 rounded border border-gray-600 focus:border-green-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              />
-            </div>
-            <div class="relative mb-4">
-              <label for="nickname" class="leading-7 text-sm text-gray-400"
-                >Nickname</label
-              >
-              <input
-                autocomplete
-                type="text"
-                id="nickname"
-                name="nickname"
-                class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-green-900 rounded border border-gray-600 focus:border-green-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-              />
-            </div>
+
             <div class="relative mb-4">
               <label for="email" class="leading-7 text-sm text-gray-400"
                 >Email</label
               >
               <input
-                autocomplete
+                autocomplete="on"
                 type="email"
                 id="email"
                 name="email"
+                required
                 class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-green-900 rounded border border-gray-600 focus:border-green-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
             <div class="relative mb-4">
-              <label for="email" class="leading-7 text-sm text-gray-400"
+              <label for="password" class="leading-7 text-sm text-gray-400"
                 >Password</label
               >
               <input
-                autocomplete
+                autocomplete="on"
                 type="password"
                 name="password"
                 id="password"
@@ -92,13 +56,13 @@
             >
               Submit
             </button>
-            <p class="bg-green-500 text-xs mt-3 gubi-error"></p>
+            <p class="text-xs mt-3 gubi-error"></p>
           </form>
         </div>
       </div>
     </section>
 
     <%- include('partials/footer'); -%>
-    <script src="/js/signup__script.js"></script>
+    <script src="/js/login__script.js"></script>
   </body>
 </html>

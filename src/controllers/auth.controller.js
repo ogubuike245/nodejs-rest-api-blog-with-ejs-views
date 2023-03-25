@@ -1,4 +1,7 @@
-const { registerUserService } = require("../services/auth.service.js");
+const {
+  registerUserService,
+  loginUserService,
+} = require("../services/auth.service.js");
 const { createToken } = require("../utils/helpers.js");
 
 // GET ROUTES CONTROLLERS
@@ -13,8 +16,8 @@ const signupPage = (request, response) => {
 
 const userSignupController = async (request, response) => {
   const { email, password, firstname, lastname, nickname } = request.body;
-
   console.log(request.body);
+
   try {
     const result = await registerUserService({
       firstname,
@@ -23,25 +26,23 @@ const userSignupController = async (request, response) => {
       nickname,
       password,
     });
-    const { status, error, message, newUser } = result;
+    const { status, error, message, newUser, token } = result;
 
     if (error) {
-      console.log(error);
       return response.status(status).json({
         error,
         message,
       });
     }
 
-    const token = createToken(newUser._id);
-    response.cookie("jwt", token, {
+    response.cookie(process.env.JWT_NAME, token, {
       httpOnly: true,
       maximumAge: process.env.MAX_AGE,
     });
 
     return response.status(status).json({
       message,
-      user: newUser._id,
+      user: newUser.nickname,
     });
   } catch (error) {
     return response.status(500).json({
@@ -51,7 +52,49 @@ const userSignupController = async (request, response) => {
   }
 };
 
+const loginPage = (request, response) => {
+  response.render("login", {
+    title: "Login",
+  });
+};
+
+const userLoginController = async (request, response) => {
+  const { email, password } = request.body;
+
+  try {
+    const result = await loginUserService({
+      email,
+      password,
+    });
+    const { status, error, message, token, redirect } = result;
+
+    if (error) {
+      return response.status(status).json({
+        error,
+        message,
+      });
+    }
+
+    response.cookie(process.env.JWT_NAME, token, {
+      httpOnly: true,
+      maximumAge: process.env.MAX_AGE,
+    });
+
+    response.status(status).json({
+      success: true,
+      message: message,
+      redirect: redirect,
+    });
+  } catch (error) {
+    return response.status(500).json({
+      error: true,
+      message: error.message,
+    });
+  }
+};
 module.exports = {
   signupPage,
   userSignupController,
+  userLoginController,
+  loginPage,
 };

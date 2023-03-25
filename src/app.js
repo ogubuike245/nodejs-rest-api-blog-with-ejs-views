@@ -23,7 +23,7 @@ connectToDatabase(app);
 app.set("view engine", "ejs");
 app.set("views", path.join(path.resolve(), "src/views"));
 
-app.use(express.static("./public"));
+app.use(express.static(path.join(path.resolve(), "src/dist")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -33,6 +33,9 @@ app.use(cors());
 app.use(allowedMethods);
 app.use(checkForLoggedInUser);
 
+app.get("/", (req, res) => {
+  res.render("index", { title: "HOME" });
+});
 app.use("/api/v1/auth", authRoutes);
 // app.use("/api/v1/blog", blogRoutes);
 

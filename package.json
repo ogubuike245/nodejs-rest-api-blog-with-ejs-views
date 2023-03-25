@@ -6,7 +6,7 @@
   "scripts": {
     "start": "NODE_ENV=production node -r dotenv/config src/app.js",
     "dev": "npm run build:css && nodemon -r dotenv/config src/app.js",
-    "test": "jest --detectOpenHandles",
+    "test": "jest --runInBand --detectOpenHandles",
     "build:css": "npx tailwindcss-cli@latest build -i ./src/public/css/tailwind.css -o ./src/public/css/styles.css"
   },
   "repository": {

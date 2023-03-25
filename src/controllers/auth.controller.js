@@ -5,12 +5,14 @@ const { registerUserService } = require("../services/auth.service.js");
 //FIXME: FETCH DETAILS OF ALL BLOG DOCUMENTS FROM THE MONGODB DATABASE
 
 const signupPage = (request, response) => {
-  // return response.status(200).json({
-  //   text: "Signup",
-  // });
-  response.render("signup", {
-    title: "Signup",
-  });
+  response
+    .status(200)
+    .json({
+      text: "Signup",
+    })
+    .render("signup", {
+      title: "Signup",
+    });
 };
 
 const userSignupController = async (request, response) => {

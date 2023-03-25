@@ -5,14 +5,14 @@ const User = require("../models/user.model.js");
 
 const checkForLoggedInUser = async (request, res, next) => {
   try {
-    const token = request.cookies.gubi;
+    const token = request.cookies.jwt;
     if (!token) return next();
 
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
     const user = await User.findById(decodedToken.id);
 
-    if (!user) return res.redirect("/api/v1/user/signup");
+    if (!user) return res.redirect("/api/v1/auth/signup");
 
     request.user = res.locals.user = user;
 
@@ -20,7 +20,7 @@ const checkForLoggedInUser = async (request, res, next) => {
   } catch (err) {
     if (err instanceof jwt.TokenExpiredError) {
       // Token has expired, clear cookie and return error response
-      res.clearCookie("gubi");
+      res.clearCookie("jwt");
       res.status(401).json({
         error: true,
         message: "Session has expired. Please log in again.",
@@ -37,7 +37,7 @@ const checkForLoggedInUser = async (request, res, next) => {
 // CHECK FOR IF THE USER IS LOGGED IN BEFORE REDIRECTING USER
 const isLoggedIn = (request, response, next) => {
   if (request.user) {
-    response.redirect("/api/v1/blog/");
+    response.redirect("/");
   } else {
     next();
   }
@@ -46,10 +46,10 @@ const isLoggedIn = (request, response, next) => {
 // CHECK TO SEE IF THE JSON WEB TOKEN EXISTS AND ALSO IF THE TOKEN HAS BEEN VERIFIED
 const tokenVerification = async (request, res, next) => {
   try {
-    const token = request.cookies.gubi;
+    const token = request.cookies.jwt;
 
     if (!token) {
-      return res.redirect("/api/v1/user/login");
+      return res.redirect("/api/v1/auth/login");
     }
 
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
@@ -62,7 +62,7 @@ const tokenVerification = async (request, res, next) => {
     return next();
   } catch (err) {
     console.error(err);
-    return res.redirect("/api/v1/user/login");
+    return res.redirect("/api/v1/auth/login");
   }
 };
 

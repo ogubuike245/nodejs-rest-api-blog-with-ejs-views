@@ -4,32 +4,85 @@
   <body>
     <%- include("./partials/navbar.ejs") %>
 
-    <div class="bg-gray-100 p-4">
-      <h1 class="text-2xl font-bold">Hello, World!</h1>
-      <p class="text-gray-500 mt-2">
-        This is my first EJS template with Tailwind CSS.
-      </p>
-    </div>
+    <section class="text-gray-400 bg-gray-900 body-font">
+      <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
+        <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
+          <h1 class="title-font font-medium text-3xl text-white">
+            Welcome to my Sports and Web Development Technology Blog!
+          </h1>
+          <p class="leading-relaxed mt-4">
+            Join the community of sports and web development technology
+            enthusiasts and stay updated on the latest news, trends, and
+            insights.
+          </p>
+        </div>
 
-    <form>
-      <h2>Sign up</h2>
-      <label for="firstname">firstname</label>
-      <input type="text" name="firstname" required />
-      <div class="firstname error"></div>
-      <label for="text">Lastname</label>
-      <input type="text" name="lastname" required />
-      <div class="lastname error"></div>
-      <label for="nickname">Nickname</label>
-      <input type="text" name="nickname" required />
-      <div class="nickname error"></div>
-      <label for="email">Email</label>
-      <input type="text" name="email" required />
-      <div class="email error"></div>
-      <label for="password">Password</label>
-      <input type="password" name="password" required />
-      <div class="password error"></div>
-      <button>Sign up</button>
-    </form>
+        <div
+          class="lg:w-2/6 md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0"
+        >
+          <form action="/api/v1/auth/signup" method="post">
+            <h2 class="text-white text-lg font-medium title-font mb-5">
+              Sign Up
+            </h2>
+            <div class="relative mb-4">
+              <label for="full-name" class="leading-7 text-sm text-gray-400"
+                >First Name</label
+              >
+              <input
+                type="text"
+                name="firstname"
+                required
+                type="text"
+                id="firstname"
+                class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-green-900 rounded border border-gray-600 focus:border-green-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+            <div class="relative mb-4">
+              <label for="full-name" class="leading-7 text-sm text-gray-400"
+                >Last Name</label
+              >
+              <input
+                type="text"
+                name="lastname"
+                required
+                class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-green-900 rounded border border-gray-600 focus:border-green-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+            <div class="relative mb-4">
+              <label for="email" class="leading-7 text-sm text-gray-400"
+                >Email</label
+              >
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-green-900 rounded border border-gray-600 focus:border-green-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+            <div class="relative mb-4">
+              <label for="email" class="leading-7 text-sm text-gray-400"
+                >Password</label
+              >
+              <input
+                type="password"
+                name="password"
+                id="password"
+                required
+                class="w-full bg-gray-600 bg-opacity-20 focus:bg-transparent focus:ring-2 focus:ring-green-900 rounded border border-gray-600 focus:border-green-500 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
+            <button
+              class="text-white bg-green-500 border-0 py-2 px-8 focus:outline-none hover:bg-green-600 rounded text-lg"
+            >
+              Submit
+            </button>
+            <p class="text-xs mt-3">
+              Literally you probably haven't heard of them jean shorts.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
 
     <%- include('partials/footer'); -%>
   </body>

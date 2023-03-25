@@ -23,7 +23,7 @@ connectToDatabase(app);
 app.set("view engine", "ejs");
 app.set("views", path.join(path.resolve(), "src/views"));
 
-app.use(express.static(path.join(path.resolve(), "src/dist")));
+app.use(express.static(path.join(path.resolve(), "src/public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());

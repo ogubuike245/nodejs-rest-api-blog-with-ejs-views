@@ -11,8 +11,6 @@ signupForm.addEventListener("submit", async (event) => {
   const nickname = signupForm.nickname.value;
   const password = signupForm.password.value;
 
-  console.log(signupForm.firstname.value);
-
   try {
     const res = await fetch(`/api/v1/auth/signup`, {
       method: "POST",
@@ -28,10 +26,13 @@ signupForm.addEventListener("submit", async (event) => {
     const data = await res.json();
     console.log(data);
     if (data.error) {
-      errorInfo.textContent = data.error;
+      errorInfo.textContent = data.message;
     }
     if (data.user) {
-      location.assign("/");
+      errorInfo.textContent = data.message;
+      setTimeout(() => {
+        location.assign("/");
+      }, 600);
     }
   } catch (error) {
     console.log(error);

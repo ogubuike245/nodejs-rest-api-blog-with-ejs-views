@@ -1,11 +1,17 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model.js");
+const {
+  navLinks,
+  isAuthenticated,
+  notAuthenticated,
+} = require("../utils/constants.js");
 
 // CHECK IF THERE IS A LOGGED IN USER FROM THE JWT TOKEN
 
 const checkForLoggedInUser = async (request, res, next) => {
   try {
-    const token = request.cookies.jwt;
+    const { JWT_NAME } = request.cookies;
+    const token = JWT_NAME;
     if (!token) return next();
 
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
@@ -18,19 +24,10 @@ const checkForLoggedInUser = async (request, res, next) => {
 
     return next();
   } catch (err) {
-    if (err instanceof jwt.TokenExpiredError) {
-      // Token has expired, clear cookie and return error response
-      res.clearCookie("jwt");
-      res.status(401).json({
-        error: true,
-        message: "Session has expired. Please log in again.",
-      });
-    } else {
-      // Other errors, log and return error response
-      console.error(err);
-      request.user = res.locals.user = null;
-      return next(err);
-    }
+    // Other errors, log and return error response
+    console.error(err);
+    request.user = res.locals.user = null;
+    return next(err);
   }
 };
 
@@ -46,7 +43,8 @@ const isLoggedIn = (request, response, next) => {
 // CHECK TO SEE IF THE JSON WEB TOKEN EXISTS AND ALSO IF THE TOKEN HAS BEEN VERIFIED
 const tokenVerification = async (request, res, next) => {
   try {
-    const token = request.cookies.jwt;
+    const { JWT_NAME } = request.cookies;
+    const token = JWT_NAME;
 
     if (!token) {
       return res.redirect("/api/v1/auth/login");
@@ -89,9 +87,25 @@ const allowedMethods = async (request, response, next) => {
   }
 };
 
+const errorHandler = (err, req, res, next) => {
+  console.error(err.stack);
+  const statusCode = err.statusCode || 500;
+  const message = err.message || "Internal Server Error";
+  res.status(statusCode).json({ error: true, message });
+};
+
+const setNavLinksLocals = (req, res, next) => {
+  res.locals.navLinks = navLinks;
+  res.locals.isAuthenticated = isAuthenticated;
+  res.locals.notAuthenticated = notAuthenticated;
+  next();
+};
+
 module.exports = {
   tokenVerification,
   isLoggedIn,
   checkForLoggedInUser,
   allowedMethods,
+  setNavLinksLocals,
+  errorHandler,
 };

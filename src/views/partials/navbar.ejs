@@ -22,63 +22,42 @@
       </svg>
       <span class="ml-3 text-xl">Buike</span>
     </a>
+
     <nav
       class="md:ml-auto flex flex-wrap items-center text-base justify-center"
     >
-      <a href="/api/v1/auth/signup" class="mr-5 hover:text-white">
+      <a href="/" class="mr-5 hover:text-white">
         <button
           class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0"
         >
-          Sign Up
-          <svg
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            class="w-4 h-4 ml-1"
-            viewBox="0 0 24 24"
-          >
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
+          Home
         </button>
       </a>
-      <a href="/api/v1/auth/signup" class="mr-5 hover:text-white">
+      <% navLinks.forEach((link) => { %>
+      <a href="<%= link.path %>" class="mr-5 hover:text-white">
         <button
           class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0"
         >
-          Login
-          <svg
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            class="w-4 h-4 ml-1"
-            viewBox="0 0 24 24"
-          >
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
+          <%= link.title %>
         </button>
       </a>
-      <a href="/api/v1/auth/signup" class="mr-5 hover:text-white">
+      <% }) %> <% locals.user ? isAuthenticated.forEach((link) => { %>
+      <a href="<%= link.path %>" class="mr-5 hover:text-white">
         <button
           class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0"
         >
-          Logout
-          <svg
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            class="w-4 h-4 ml-1"
-            viewBox="0 0 24 24"
-          >
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
+          <%= link.title %>
         </button>
       </a>
+      <% }) : notAuthenticated.forEach((link) => { %>
+      <a href="<%= link.path %>" class="mr-5 hover:text-white">
+        <button
+          class="inline-flex items-center bg-gray-800 border-0 py-1 px-3 focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0"
+        >
+          <%= link.title %>
+        </button>
+      </a>
+      <% }) %>
     </nav>
   </div>
 </header>

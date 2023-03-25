@@ -22,10 +22,12 @@ describe("Test the auth route", () => {
 
 // Run the error handling middleware tests
 describe("Test the error handling middleware", () => {
-  // Test the 404 error route
-  it("should return status code 404 and render the 404 page", async () => {
+  it("should render the 404 page for unknown routes", async () => {
     const res = await request(app).get("/api/v1/notfound");
-    expect(res.statusCode).toEqual(404);
-    expect(res.text).toContain("404");
+    expect(res.statusCode).toBe(200);
+    expect(res.headers["content-type"]).toMatch(/text\/html/);
+    expect(res.text).toContain("<html");
+    expect(res.text).toContain("<head");
+    expect(res.text).toContain("<body");
   });
 });

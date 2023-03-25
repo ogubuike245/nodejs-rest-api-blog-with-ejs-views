@@ -18,11 +18,11 @@ const userSignupController = async (request, response) => {
 
   try {
     const result = await registerUserService({
-      email,
-      password,
       firstname,
       lastname,
+      email,
       nickname,
+      password,
     });
     const { status, error, message } = result;
 

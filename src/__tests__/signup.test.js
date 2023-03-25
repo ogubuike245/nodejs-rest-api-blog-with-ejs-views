@@ -11,7 +11,10 @@ const authRouteTests = {
   signupPageTest: async () => {
     const response = await request(app).get("/api/v1/auth/signup");
     expect(response.statusCode).toBe(200);
-    expect(response.text).toContain("Signup");
+    expect(response.headers["content-type"]).toMatch(/text\/html/);
+    expect(response.text).toContain("<html");
+    expect(response.text).toContain("<head");
+    expect(response.text).toContain("<body");
   },
 
   createNewUserTest: async () => {

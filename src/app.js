@@ -27,9 +27,13 @@ app.use(express.static(path.join(path.resolve(), "src/public")));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(helmet());
+
 app.use(compression());
 app.use(cors());
+app.use(helmet());
+
+// Add content security policy middleware
+
 app.use(allowedMethods);
 app.use(checkForLoggedInUser);
 

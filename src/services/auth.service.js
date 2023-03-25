@@ -42,6 +42,7 @@ exports.registerUserService = async function (userData) {
       success: true,
       message: "Registration successful!",
       status: 201,
+      newUser,
     };
   } catch (error) {
     return {

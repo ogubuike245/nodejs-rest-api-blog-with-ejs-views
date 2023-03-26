@@ -13,23 +13,19 @@ const isAuthenticated = [
   {
     id: "1",
     title: "Profile",
-    path: "/profile",
+    path: "/api/v1/user/profile",
   },
-
   {
     id: "2",
     title: "Create Blog",
-    path: "/create",
+    path: "/api/v1/blog/create",
   },
   {
     id: "3",
     title: "Logout",
-    path: "/logout",
+    path: "/api/v1/user/logout",
   },
-].map((link) => ({
-  ...link,
-  path: `/api/v1/user${link.path}`,
-}));
+];
 const notAuthenticated = [
   {
     id: "1",

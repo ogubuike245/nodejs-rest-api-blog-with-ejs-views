@@ -12,17 +12,18 @@
           <!-- blog-list.ejs -->
 
           <% for (let blog of blogs) { %>
+
           <div class="p-12 md:w-1/2 flex flex-col items-start">
             <span
               class="inline-block py-1 px-2 rounded bg-gray-800 text-gray-400 text-opacity-75 text-xs font-medium tracking-widest"
-              ><%= blog.category %></span
+              ><%= blog?.category %></span
             >
             <h2
               class="sm:text-3xl text-2xl title-font font-medium text-white mt-4 mb-4"
             >
-              <%= blog.title %>
+              <%= blog?.title %>
             </h2>
-            <p class="leading-relaxed mb-8"><%= blog.snippet %></p>
+            <p class="leading-relaxed mb-8"><%= blog?.snippet %></p>
             <div
               class="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-800 border-opacity-75 mt-auto w-full"
             >
@@ -84,10 +85,10 @@
               />
               <span class="flex-grow flex flex-col pl-4">
                 <span class="title-font font-medium text-white"
-                  ><%= blog.postedBy.firstname %></span
+                  ><%= blog?.postedBy?.firstname %></span
                 >
                 <span class="text-gray-500 text-xs tracking-widest mt-0.5"
-                  ><%= blog.postedBy.profession %></span
+                  ><%= blog?.postedBy?.profession %></span
                 >
               </span>
             </a>

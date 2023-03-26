@@ -1,26 +1,37 @@
-const Blog = require("../models/blog.model");
+const {
+  createBlogService,
+  getAllBlogsService,
+} = require("../services/blog.service");
 const { logger } = require("../utils/logger");
 
-const blogPosts = async (req, res) => {
+const blogPostsPage = async (req, res) => {
   try {
-    const blogs = await Blog.find({}).populate("postedBy");
-    res.render("posts", { title: "Blogs", blogs });
+    const result = await getAllBlogsService();
+    console.log(result);
+    const { posts } = result;
+    res.render("posts", { title: "Blogs", blogs: posts });
   } catch (error) {
     logger.error(error);
     logger.error(error.message);
   }
 };
-const createBlogPost = async (req, res) => {
+const createBlogPostPage = async (req, res) => {
+  res.render("create", { title: "Create blog" });
+};
+const createBlogPost = async (request, res) => {
   try {
-    const { title, category, snippet, description, postedBy } = req.body;
-    const blog = await Blog.create({
+    const { title, category, snippet, content } = request.body;
+    console.log(request.body);
+    const postedBy = request.user._id;
+
+    const blog = await createBlogService({
       title,
       category,
       snippet,
-      description,
+      content,
       postedBy,
     });
-    await blog.save();
+
     res.status(201).json(blog);
   } catch (error) {
     logger.error(error);
@@ -29,6 +40,7 @@ const createBlogPost = async (req, res) => {
 };
 
 module.exports = {
-  blogPosts,
+  blogPostsPage,
   createBlogPost,
+  createBlogPostPage,
 };

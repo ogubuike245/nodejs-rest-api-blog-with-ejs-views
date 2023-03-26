@@ -59,3 +59,5 @@ app.use((_, response) => {
 });
 
 app.use(errorHandler);
+
+module.exports = app;

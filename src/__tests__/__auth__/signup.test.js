@@ -1,13 +1,7 @@
-const User = require("../models/user.model");
-const app = require("../app");
+const app = require("../../app");
 const request = require("supertest");
 
-const authRouteTests = {
-  beforeEach: async () => {
-    // Drop the users collection before each test
-    await User.deleteMany({});
-  },
-
+const signupRouteTests = {
   signupPageTest: async () => {
     const response = await request(app).get("/api/v1/auth/signup");
     expect(response.statusCode).toBe(200);
@@ -19,11 +13,12 @@ const authRouteTests = {
 
   createNewUserTest: async () => {
     const response = await request(app).post("/api/v1/auth/signup").send({
-      email: "test@test.com",
-      password: "test123",
-      firstname: "John",
-      lastname: "Doe",
-      nickname: "johndoe",
+      email: "ogubuike245@gmail.com",
+      password: "123456",
+      firstname: "ogubuike",
+      lastname: "emejuru",
+      nickname: "gubi",
+      profession: "mechanical engineer",
     });
     expect(response.statusCode).toBe(201);
     expect(response.body).toHaveProperty("message", "Registration successful!");
@@ -32,19 +27,21 @@ const authRouteTests = {
   existingEmailTest: async () => {
     // Create a user with the same email before running the test
     await request(app).post("/api/v1/auth/signup").send({
-      email: "test@test.com",
-      password: "test123",
-      firstname: "John",
-      lastname: "Doe",
-      nickname: "johndoe",
+      email: "ogubuike245@gmail.com",
+      password: "123456",
+      firstname: "ogubuike",
+      lastname: "emejuru",
+      nickname: "gubi",
+      profession: "mechanical engineer",
     });
 
     const response = await request(app).post("/api/v1/auth/signup").send({
-      email: "test@test.com",
-      password: "test123",
-      firstname: "Jane",
-      lastname: "Doe",
-      nickname: "janedoe",
+      email: "ogubuike245@gmail.com",
+      password: "123456",
+      firstname: "ogubuike",
+      lastname: "emejuru",
+      nickname: "gubi",
+      profession: "mechanical engineer",
     });
     expect(response.statusCode).toBe(400);
     expect(response.text).toContain(
@@ -55,19 +52,21 @@ const authRouteTests = {
   existingNicknameTest: async () => {
     // Create a user with the same nickname before running the test
     await request(app).post("/api/v1/auth/signup").send({
-      email: "test1@test.com",
-      password: "test123",
-      firstname: "John",
-      lastname: "Doe",
-      nickname: "johndoe",
+      email: "ogubuike245@gmail.com",
+      password: "123456",
+      firstname: "ogubuike",
+      lastname: "emejuru",
+      nickname: "gubi",
+      profession: "mechanical engineer",
     });
 
     const response = await request(app).post("/api/v1/auth/signup").send({
-      email: "test2@test.com",
-      password: "test123",
-      firstname: "Jane",
-      lastname: "Doe",
-      nickname: "johndoe",
+      email: "ogubuike245@gmail.com",
+      password: "123456",
+      firstname: "ogubuike",
+      lastname: "emejuru",
+      nickname: "gubi",
+      profession: "mechanical engineer",
     });
     expect(response.statusCode).toBe(400);
     expect(response.text).toContain(
@@ -76,4 +75,4 @@ const authRouteTests = {
   },
 };
 
-module.exports = authRouteTests;
+module.exports = signupRouteTests;

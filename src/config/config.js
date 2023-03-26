@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const { logger } = require("../utils/logger");
 
 dotenv.config();
 const { MONGO_DB_URI, API_PORT } = process.env;
@@ -14,9 +15,9 @@ exports.connectToDatabase = async function (app) {
 
     //LISTEN FOR REQUESTS
     app.listen(API_PORT || 5000, () => {
-      console.log(` LISTENING ON PORT ${API_PORT} and connected to database`);
+      logger.info(` LISTENING ON PORT ${API_PORT} and connected to database`);
     });
   } catch (e) {
-    console.error(e);
+    logger.error(e);
   }
 };

@@ -2,7 +2,7 @@ const navLinks = [
   {
     id: "1",
     title: "All Blogs",
-    path: "/view-all",
+    path: "/posts",
   },
 ].map((link) => ({
   ...link,

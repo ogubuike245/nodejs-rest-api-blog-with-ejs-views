@@ -2,7 +2,6 @@ const {
   registerUserService,
   loginUserService,
 } = require("../services/auth.service.js");
-const { createToken } = require("../utils/helpers.js");
 
 // GET ROUTES CONTROLLERS
 
@@ -15,8 +14,9 @@ const signupPage = (request, response) => {
 };
 
 const userSignupController = async (request, response) => {
-  const { email, password, firstname, lastname, nickname } = request.body;
-  console.log(request.body);
+  const { email, password, firstname, lastname, nickname, profession } =
+    request.body;
+  // console.log(request.body);
 
   try {
     const result = await registerUserService({
@@ -24,6 +24,7 @@ const userSignupController = async (request, response) => {
       lastname,
       email,
       nickname,
+      profession,
       password,
     });
     const { status, error, message, newUser, token } = result;

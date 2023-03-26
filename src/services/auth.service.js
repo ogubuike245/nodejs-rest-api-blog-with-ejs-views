@@ -4,7 +4,8 @@ const { createToken } = require("../utils/helpers");
 
 exports.registerUserService = async function (userData) {
   try {
-    const { email, password, firstname, lastname, nickname } = userData;
+    const { email, password, firstname, lastname, nickname, profession } =
+      userData;
 
     const existingUser = await User.findOne({ email });
     const existingNickname = await User.findOne({ nickname });
@@ -35,6 +36,7 @@ exports.registerUserService = async function (userData) {
       lastname,
       nickname,
       password: hashedPassword,
+      profession,
     });
 
     await newUser.save();

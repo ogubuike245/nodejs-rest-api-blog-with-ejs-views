@@ -7,7 +7,7 @@
     "start": "NODE_ENV=production node -r dotenv/config src/app.js",
     "dev": "nodemon -r dotenv/config src/app.js",
     "test": "jest --runInBand --detectOpenHandles",
-    "build:css": "npx tailwindcss-cli@latest build -i ./src/public/css/tailwind.css -o ./src/public/css/styles.css"
+    "build": "npx tailwindcss-cli@latest build -i ./src/public/css/tailwind.css -o ./src/public/css/styles.css"
   },
   "repository": {
     "type": "git",

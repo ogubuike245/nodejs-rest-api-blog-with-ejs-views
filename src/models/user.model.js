@@ -17,6 +17,11 @@ const userSchema = new mongoose.Schema({
     minlength: [3, "Minimum  length is 3 characters"],
     unique: true,
   },
+  profession: {
+    type: String,
+    required: [true, "Please Select a Profession"],
+    minlength: [5, "Minimum  length is 5 characters"],
+  },
   email: {
     type: String,
     required: true,
@@ -29,6 +34,6 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;

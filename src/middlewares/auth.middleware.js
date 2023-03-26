@@ -15,13 +15,9 @@ const checkForLoggedInUser = async (request, res, next) => {
     if (!token) return next();
 
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-
     const user = await User.findById(decodedToken.id);
-
-    if (!user) return res.redirect("/api/v1/auth/signup");
-
+    if (!user) return res.status(404).json("Please Signup or Login");
     request.user = res.locals.user = user;
-
     return next();
   } catch (err) {
     // Other errors, log and return error response
@@ -49,14 +45,9 @@ const tokenVerification = async (request, res, next) => {
     if (!token) {
       return res.redirect("/api/v1/auth/login");
     }
-
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decodedToken.id);
-
-    // Attach user ID to request object and response locals
-
     request.user = res.locals.user = user;
-
     return next();
   } catch (err) {
     console.error(err);

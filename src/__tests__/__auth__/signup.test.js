@@ -13,11 +13,11 @@ const signupRouteTests = {
 
   createNewUserTest: async () => {
     const response = await request(app).post("/api/v1/auth/signup").send({
-      email: "test@test.com",
-      password: "test123",
-      firstname: "John",
-      lastname: "Doe",
-      nickname: "johndoe",
+      email: "ogubuike245@gmail.com",
+      password: "123456",
+      firstname: "ogubuike",
+      lastname: "emejuru",
+      nickname: "gubi",
       profession: "mechanical engineer",
     });
     expect(response.statusCode).toBe(201);
@@ -27,20 +27,20 @@ const signupRouteTests = {
   existingEmailTest: async () => {
     // Create a user with the same email before running the test
     await request(app).post("/api/v1/auth/signup").send({
-      email: "test@test.com",
-      password: "test123",
-      firstname: "John",
-      lastname: "Doe",
-      nickname: "johndoe",
+      email: "ogubuike245@gmail.com",
+      password: "123456",
+      firstname: "ogubuike",
+      lastname: "emejuru",
+      nickname: "gubi",
       profession: "mechanical engineer",
     });
 
     const response = await request(app).post("/api/v1/auth/signup").send({
-      email: "test@test.com",
-      password: "test123",
-      firstname: "Jane",
-      lastname: "Doe",
-      nickname: "janedoe",
+      email: "ogubuike245@gmail.com",
+      password: "123456",
+      firstname: "ogubuike",
+      lastname: "emejuru",
+      nickname: "gubi",
       profession: "mechanical engineer",
     });
     expect(response.statusCode).toBe(400);
@@ -52,20 +52,20 @@ const signupRouteTests = {
   existingNicknameTest: async () => {
     // Create a user with the same nickname before running the test
     await request(app).post("/api/v1/auth/signup").send({
-      email: "test1@test.com",
-      password: "test123",
-      firstname: "John",
-      lastname: "Doe",
-      nickname: "johndoe",
+      email: "ogubuike245@gmail.com",
+      password: "123456",
+      firstname: "ogubuike",
+      lastname: "emejuru",
+      nickname: "gubi",
       profession: "mechanical engineer",
     });
 
     const response = await request(app).post("/api/v1/auth/signup").send({
-      email: "test2@test.com",
-      password: "test123",
-      firstname: "Jane",
-      lastname: "Doe",
-      nickname: "johndoe",
+      email: "ogubuike245@gmail.com",
+      password: "123456",
+      firstname: "ogubuike",
+      lastname: "emejuru",
+      nickname: "gubi",
       profession: "mechanical engineer",
     });
     expect(response.statusCode).toBe(400);

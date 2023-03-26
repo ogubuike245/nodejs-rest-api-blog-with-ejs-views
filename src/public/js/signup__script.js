@@ -7,6 +7,7 @@ signupForm.addEventListener("submit", async (event) => {
   // get values
   const firstname = signupForm.firstname.value;
   const lastname = signupForm.lastname.value;
+  const profession = signupForm.profession.value;
   const email = signupForm.email.value;
   const nickname = signupForm.nickname.value;
   const password = signupForm.password.value;
@@ -20,6 +21,7 @@ signupForm.addEventListener("submit", async (event) => {
         email,
         nickname,
         password,
+        profession,
       }),
       headers: { "Content-Type": "application/json" },
     });

@@ -18,6 +18,7 @@ const {
 } = require("./middlewares/auth.middleware.js");
 
 // import app routes
+const homeRoute = require("./routes/home.route.js");
 const authRoutes = require("./routes/auth.route.js");
 const userRoutes = require("./routes/user.route.js");
 const blogRoutes = require("./routes/blog.route.js");
@@ -43,11 +44,7 @@ app.use(allowedMethods);
 app.use(checkForLoggedInUser);
 
 // app routes
-app.get("/", (req, res) => {
-  res.render("index", {
-    title: "HOME",
-  });
-});
+app.use("/", homeRoute);
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/blog", blogRoutes);

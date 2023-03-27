@@ -1,5 +1,5 @@
 const createBlogForm = document.querySelector(".createBlogForm");
-const errorInfo = document.querySelector(".gubi-error");
+const Info = document.querySelector(".gubi-info");
 
 createBlogForm.addEventListener("submit", async (event) => {
   event.preventDefault();
@@ -22,7 +22,12 @@ createBlogForm.addEventListener("submit", async (event) => {
       headers: { "Content-Type": "application/json" },
     });
     const data = await res.json();
-    console.log(data);
+
+    if (data.success) {
+      Info.textContent = data.message;
+    } else if (data.error) {
+      Info.textContent = data.message;
+    }
   } catch (error) {
     console.log(error);
   }

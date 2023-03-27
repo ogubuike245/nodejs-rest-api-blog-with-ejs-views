@@ -1,6 +1,7 @@
 const {
   registerUserService,
   loginUserService,
+  // refreshAccessTokenService,
 } = require("../services/auth.service.js");
 
 // GET ROUTES CONTROLLERS
@@ -16,7 +17,6 @@ const signupPage = (request, response) => {
 const userSignupController = async (request, response) => {
   const { email, password, firstname, lastname, nickname, profession } =
     request.body;
-  // console.log(request.body);
 
   try {
     const result = await registerUserService({
@@ -93,9 +93,43 @@ const userLoginController = async (request, response) => {
     });
   }
 };
+//
+
 module.exports = {
   signupPage,
   userSignupController,
-  userLoginController,
   loginPage,
+  userLoginController,
+  // refreshAccessTokenController,
 };
+
+// const refreshAccessTokenController = async (request, response) => {
+//   const { refreshToken } = request.body;
+
+//   try {
+//     const result = await refreshAccessTokenService(refreshToken);
+//     const { accessToken, refreshToken } = result;
+
+//     if (error) {
+//       return response.status(status).json({
+//         error,
+//         message,
+//       });
+//     }
+
+//     response.cookie(process.env.JWT_NAME, token, {
+//       httpOnly: true,
+//       maximumAge: process.env.MAX_AGE,
+//     });
+
+//     response.status(200).json({
+//       success: true,
+//       message: message,
+//     });
+//   } catch (error) {
+//     return response.status(500).json({
+//       error: true,
+//       message: error.message,
+//     });
+//   }
+// };

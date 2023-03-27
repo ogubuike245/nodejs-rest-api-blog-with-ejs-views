@@ -6,7 +6,7 @@ exports.getAllBlogsService = async function () {
 
     return {
       success: true,
-      message: "Blog Posts received",
+      message: "All Blogs received",
       status: 200,
       posts,
     };
@@ -32,7 +32,7 @@ exports.createBlogService = async function (userData) {
 
     return {
       success: true,
-      message: "Blog Posts Created",
+      message: "Blog Post Created",
       status: 200,
       post,
     };

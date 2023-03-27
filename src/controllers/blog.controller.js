@@ -7,7 +7,6 @@ const { logger } = require("../utils/logger");
 const blogPostsPage = async (req, res) => {
   try {
     const result = await getAllBlogsService();
-    console.log(result);
     const { posts } = result;
     res.render("posts", { title: "Blogs", blogs: posts });
   } catch (error) {
@@ -21,10 +20,10 @@ const createBlogPostPage = async (req, res) => {
 const createBlogPost = async (request, res) => {
   try {
     const { title, category, snippet, content } = request.body;
-    console.log(request.body);
-    const postedBy = request.user._id;
 
-    const blog = await createBlogService({
+    const postedBy = request.body.postedBy || request.user._id;
+
+    const result = await createBlogService({
       title,
       category,
       snippet,
@@ -32,7 +31,34 @@ const createBlogPost = async (request, res) => {
       postedBy,
     });
 
-    res.status(201).json(blog);
+    const { status, message, post, success } = result;
+
+    return res.status(status).json({ message, success, post });
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ message: "Error creating blog post" });
+  }
+};
+const editBlogPostPage = async (req, res) => {
+  res.render("create", { title: "Create blog" });
+};
+const editBlogPost = async (request, res) => {
+  try {
+    const { title, category, snippet, content } = request.body;
+
+    const postedBy = request.body.postedBy || request.user._id;
+
+    const result = await createBlogService({
+      title,
+      category,
+      snippet,
+      content,
+      postedBy,
+    });
+
+    const { status, message, post, success } = result;
+
+    return res.status(status).json({ message, success, post });
   } catch (error) {
     logger.error(error);
     res.status(500).json({ message: "Error creating blog post" });
@@ -42,5 +68,7 @@ const createBlogPost = async (request, res) => {
 module.exports = {
   blogPostsPage,
   createBlogPost,
-  createBlogPostPage,
+  createBlogPost,
+  editBlogPostPage,
+  editBlogPostPage,
 };

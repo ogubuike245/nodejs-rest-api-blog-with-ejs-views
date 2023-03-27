@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/user.model");
 const { createToken } = require("../utils/helpers");
 
-exports.registerUserService = async function (userData) {
+registerUserService = async function (userData) {
   try {
     const { email, password, firstname, lastname, nickname, profession } =
       userData;
@@ -57,7 +57,7 @@ exports.registerUserService = async function (userData) {
   }
 };
 
-exports.loginUserService = async ({ email, password }) => {
+loginUserService = async ({ email, password }) => {
   try {
     const user = await User.findOne({ email });
 
@@ -96,3 +96,26 @@ exports.loginUserService = async ({ email, password }) => {
     };
   }
 };
+
+module.exports = { registerUserService, loginUserService };
+
+// async function refreshAccessTokenService(refreshToken) {
+//   try {
+//     // Verify the refresh token
+//     const decoded = jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET);
+
+//     // Check if the user exists
+//     const user = await User.findById(decoded.id);
+//     if (!user) {
+//       throw new Error("User not found");
+//     }
+
+//     // Generate new access token and refresh token
+//     const accessToken = generateAccessToken(user);
+//     const newRefreshToken = generateRefreshToken(user);
+
+//     return { accessToken, refreshToken: newRefreshToken };
+//   } catch (error) {
+//     throw new Error("Invalid refresh token");
+//   }
+// }

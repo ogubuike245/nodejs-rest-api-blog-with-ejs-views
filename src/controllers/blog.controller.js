@@ -67,8 +67,8 @@ const editBlogPost = async (request, res) => {
 
 module.exports = {
   blogPostsPage,
-  createBlogPost,
+  createBlogPostPage,
   createBlogPost,
   editBlogPostPage,
-  editBlogPostPage,
+  editBlogPost,
 };

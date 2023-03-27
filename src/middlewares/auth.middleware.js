@@ -16,7 +16,7 @@ const checkForLoggedInUser = async (request, res, next) => {
 
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(decodedToken.id);
-    if (!user) return res.redirect("/api/v1/auth/signup");
+    if (!user) return res.status(404).json({ message: "NO USER" });
     request.user = res.locals.user = user;
     return next();
   } catch (err) {

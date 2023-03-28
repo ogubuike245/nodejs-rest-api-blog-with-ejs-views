@@ -1,10 +1,5 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model.js");
-const {
-  navLinks,
-  isAuthenticated,
-  notAuthenticated,
-} = require("../utils/constants.js");
 
 // CHECK IF THERE IS A LOGGED IN USER FROM THE JWT TOKEN
 
@@ -85,18 +80,11 @@ const errorHandler = (err, req, res, next) => {
   res.status(statusCode).json({ error: true, message });
 };
 
-const setNavLinksLocals = (req, res, next) => {
-  res.locals.navLinks = navLinks;
-  res.locals.isAuthenticated = isAuthenticated;
-  res.locals.notAuthenticated = notAuthenticated;
-  next();
-};
-
 module.exports = {
   tokenVerification,
   isLoggedIn,
   checkForLoggedInUser,
   allowedMethods,
-  setNavLinksLocals,
+
   errorHandler,
 };

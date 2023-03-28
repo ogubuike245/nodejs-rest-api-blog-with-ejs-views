@@ -1,0 +1,23 @@
+body {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/images/bg2.jpg") no-repeat fixed center center;
+  background-size: cover;
+}
+
+section img::before {
+  content: "";
+  display: block;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: auto;
+  border-radius: 0 50% 50% 0;
+  background-color: #f2f2f2; /* adjust this color to match your background */
+}
+
+section {
+  position: relative;
+  overflow: hidden;
+}

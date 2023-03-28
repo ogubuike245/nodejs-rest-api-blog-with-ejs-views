@@ -13,7 +13,7 @@ const { connectToDatabase } = require("./config/config.js");
 const {
   allowedMethods,
   checkForLoggedInUser,
-  setNavLinksLocals,
+
   errorHandler,
 } = require("./middlewares/auth.middleware.js");
 
@@ -37,7 +37,6 @@ app.use(cookieParser());
 app.use(compression());
 app.use(cors());
 app.use(helmet());
-app.use(setNavLinksLocals);
 
 // Add content security policy middleware
 app.use(allowedMethods);

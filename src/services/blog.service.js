@@ -44,3 +44,29 @@ exports.createBlogService = async function (userData) {
     };
   }
 };
+exports.getSingleBlogPostService = async function (userData) {
+  const { id } = userData;
+  try {
+    const blog = await Blog.findById(id).populate("postedBy");
+
+    if (!blog) {
+      return {
+        error: true,
+        message: "Blog Post Does not exist",
+        status: 404,
+      };
+    }
+    return {
+      success: true,
+      message: blog.title,
+      status: 200,
+      blog,
+    };
+  } catch (error) {
+    return {
+      error: true,
+      message: error.message,
+      status: 500,
+    };
+  }
+};

@@ -11,11 +11,6 @@ const navLinks = [
 
 const isAuthenticated = [
   {
-    id: "1",
-    title: "Profile",
-    path: "/api/v1/user/profile",
-  },
-  {
     id: "2",
     title: "Create Blog",
     path: "/api/v1/blog/create",

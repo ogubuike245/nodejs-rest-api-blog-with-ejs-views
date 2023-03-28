@@ -1,9 +1,9 @@
 <section
-  class="text-gray-400 body-font overflow-hidden border-opacity-75 m-2 rounded-lg"
+  class="text-gray-400 bg-gray-800 body-font border-opacity-75 m-2 rounded-lg"
   style="
-    background-image: url('/images/bg2.jpg');
+    background-image: url('/images/bg5.jpg');
+    background-repeat: no-repeat;
     background-size: cover;
-    padding: 50px 0;
   "
 >
   <div
@@ -36,7 +36,7 @@
           <h2 class="text-lg text-gray-100 font-medium title-font mb-2">
             <%= blog.title.substring(0, 70) + '...' %>
           </h2>
-          <p class="leading-relaxed text-base text-gray-600">
+          <p class="leading-relaxed text-base text-gray-600 font-mono">
             <%= blog.snippet.substring(0, 70) + '...' %>
           </p>
           <a
@@ -52,7 +52,8 @@
               <span class="title-font font-medium text-gray-100"
                 ><%= blog?.postedBy?.firstname %></span
               >
-              <span class="text-gray-500 text-xs tracking-widest mt-0.5"
+              <span
+                class="text-gray-500 text-xs tracking-widest mt-0.5 font-mono"
                 ><%= blog?.postedBy?.profession %></span
               >
             </span>

@@ -10,6 +10,7 @@
       <form
         id="editBlogForm"
         action="/api/v1/blog/edit/post/<%= post._id %>"
+        method="POST"
         class="lg:w-1/2 md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col m-auto w-full md:mt-0 h-full mt-80"
       >
         <h2
@@ -81,11 +82,14 @@
         >
           Submit
         </button>
-        <p class="text-xs mt-3 gubi-info"></p>
+        <% if (locals.error) { %>
+
+        <p class="text-xs mt-3 gubi-info"><%= message %></p>
+        <% } %>
       </form>
     </section>
 
     <%- include("./partials/footer.ejs") %>
-    <script src="/js/edit-blog__script.js"></script>
+    <!-- <script src="/js/edit-blog__script.js"></script> -->
   </body>
 </html>

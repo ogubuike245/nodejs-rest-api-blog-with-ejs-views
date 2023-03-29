@@ -104,10 +104,9 @@ const editBlogPost = async (request, res) => {
     const { status, message, blog, success, error } = result;
 
     if (error) {
-      return res.status(status).json({
-        error,
-        message,
-      });
+      return res
+        .status(status)
+        .render("edit", { title: "BLOG POST", post: blog, error, message });
     }
 
     return res

@@ -1,0 +1,34 @@
+<section>
+  <div>
+    <h1>FEATURED</h1>
+  </div>
+  <div>
+    <div>
+      <% for (let blog of blogs.filter(blog => blog.featured)) { %>
+
+      <div>
+        <div>
+          <div>
+            <span><%= blog?.category %></span>
+          </div>
+          <a href="/api/v1/blog/post/<%=blog?._id %>">
+            <img src="/images/hero.jpg" alt="IMAGE" />
+          </a>
+          <h2><%= blog.title.substring(0, 70) + '...' %></h2>
+          <p><%= blog.snippet.substring(0, 70) + '...' %></p>
+          <a href="/api/v1/user/profile/<%=blog?.postedBy?._id %>">
+            <img alt="blog" src="/images/hero.jpg" />
+            <span>
+              <span><%= blog?.postedBy?.firstname %></span>
+              <span><%= blog?.postedBy?.profession %></span>
+            </span>
+          </a>
+          <a href="/api/v1/blog/post/<%=blog?._id %>">
+            <button>Read More</button>
+          </a>
+        </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</section>

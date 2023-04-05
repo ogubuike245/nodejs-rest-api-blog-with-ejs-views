@@ -9,7 +9,7 @@ const {
 //FIXME: FETCH DETAILS OF ALL BLOG DOCUMENTS FROM THE MONGODB DATABASE
 
 const signupPage = (request, response) => {
-  response.render("signup", {
+  response.render("auth/signup", {
     title: "Signup",
   });
 };
@@ -54,7 +54,7 @@ const userSignupController = async (request, response) => {
 };
 
 const loginPage = (request, response) => {
-  response.render("login", {
+  response.render("auth/login", {
     title: "Login",
   });
 };
@@ -100,36 +100,4 @@ module.exports = {
   userSignupController,
   loginPage,
   userLoginController,
-  // refreshAccessTokenController,
 };
-
-// const refreshAccessTokenController = async (request, response) => {
-//   const { refreshToken } = request.body;
-
-//   try {
-//     const result = await refreshAccessTokenService(refreshToken);
-//     const { accessToken, refreshToken } = result;
-
-//     if (error) {
-//       return response.status(status).json({
-//         error,
-//         message,
-//       });
-//     }
-
-//     response.cookie(process.env.JWT_NAME, token, {
-//       httpOnly: true,
-//       maximumAge: process.env.MAX_AGE,
-//     });
-
-//     response.status(200).json({
-//       success: true,
-//       message: message,
-//     });
-//   } catch (error) {
-//     return response.status(500).json({
-//       error: true,
-//       message: error.message,
-//     });
-//   }
-// };

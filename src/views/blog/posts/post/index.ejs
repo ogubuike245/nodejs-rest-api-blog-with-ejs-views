@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include("../../../partials/head.ejs") %>
+  <body>
+    <%- include("../../../partials/navbar.ejs") %>
+
+    <section>
+      <div>
+        <div>
+          <div>
+            <div>
+              <div>
+                <h5><%= post.date %></h5>
+                <p><%= post.category %></p>
+              </div>
+            </div>
+
+            <h1><%= post.snippet %></h1>
+            <p><%= post.content %></p>
+            <div>
+              <a href="/api/v1/blog/edit/post/<%= post._id %>">
+                <img src="/images/icons/edit.png" alt="EDIT " srcset="" />
+                EDIT POST</a
+              >
+              <a href="/api/v1/blog/edit/post/<%= post._id %>">
+                <img src="/images/icons/delete.png" alt="EDIT " srcset="" />
+                DELETE POST</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <%- include("../../../partials/footer.ejs") %>
+  </body>
+</html>

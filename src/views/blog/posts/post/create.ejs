@@ -1,0 +1,76 @@
+<html lang="en">
+  <%- include("../../../partials/head.ejs") %>
+
+  <body>
+    <%- include("../../../partials/navbar.ejs") %>
+
+    <section>
+      <div>
+        <div>
+          <h1>Create Blog Post</h1>
+          <p>
+            Ready to take the leap and share your thoughts on sports and web
+            development with the world? Join our community of like-minded
+            enthusiasts and become a part of the conversation! Whether you have
+            insights to share, trends to report, or just a burning passion to
+            express, this is the place to be. So come on in, and let your voice
+            be heard!
+          </p>
+        </div>
+
+        <div>
+          <form class="create-blog-form">
+            <h2>Create Blog Post</h2>
+
+            <div>
+              <label for="title">Title</label>
+              <input
+                autocomplete="on"
+                type="text"
+                id="title"
+                name="title"
+                required
+              />
+            </div>
+            <div>
+              <label for="category">Category</label>
+              <input
+                autocomplete="on"
+                type="text"
+                id="category"
+                name="category"
+                required
+              />
+            </div>
+            <div>
+              <label for="snippet">Snippet</label>
+              <input
+                autocomplete="on"
+                type="text"
+                id="snippet"
+                name="snippet"
+                required
+              />
+            </div>
+            <div>
+              <label for="content">Your Post Content</label>
+              <textarea
+                required
+                name="content"
+                id="content"
+                rows="8"
+                placeholder="Write your thoughts here..."
+              ></textarea>
+            </div>
+
+            <button type="submit">Submit</button>
+            <p class="create-blog-info"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <%- include('../../../partials/footer'); -%>
+    <script src="/js/create-blog__script.js"></script>
+  </body>
+</html>

@@ -3,7 +3,7 @@ const express = require("express");
 const {
   userLogout,
   getUserProfile,
-} = require("../controllers/user.controller.js");
+} = require("../controllers/user/user.controller.js");
 
 // FILE IMPORTS
 

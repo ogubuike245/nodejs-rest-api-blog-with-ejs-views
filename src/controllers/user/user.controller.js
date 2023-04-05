@@ -7,7 +7,7 @@ const getUserProfile = async (req, res) => {
     const user = await User.findById(id);
     res
       .status(200)
-      .render("profile", { success: true, user, title: "PROFILE PAGE" });
+      .render("user/profile", { success: true, user, title: "PROFILE PAGE" });
   } catch (error) {
     console.log(error);
   }

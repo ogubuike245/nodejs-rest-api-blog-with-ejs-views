@@ -12,14 +12,14 @@ const blogPostsPage = async (req, res) => {
   try {
     const result = await getAllBlogsService();
     const { posts } = result;
-    res.render("posts", { title: "Blogs", blogs: posts });
+    res.render("blog/posts/index", { title: "Blogs", blogs: posts });
   } catch (error) {
     logger.error(error);
     logger.error(error.message);
   }
 };
 const createBlogPostPage = async (req, res) => {
-  res.render("create", { title: "Create blog" });
+  res.render("blog/posts/post/create", { title: "Create blog" });
 };
 const createBlogPost = async (request, res) => {
   try {
@@ -59,7 +59,11 @@ const getSingleBlogPostPage = async (req, res) => {
 
     return res
       .status(status)
-      .render("post", { title: "BLOG POST", post: blog, message });
+      .render("blog/posts/post/index", {
+        title: "BLOG POST",
+        post: blog,
+        message,
+      });
   } catch (error) {
     console.log(error);
     logger.error(error);
@@ -82,7 +86,11 @@ const editBlogPostPage = async (req, res) => {
 
     return res
       .status(status)
-      .render("edit", { title: "BLOG POST", post: blog, message });
+      .render("blog/posts/post/edit", {
+        title: "BLOG POST",
+        post: blog,
+        message,
+      });
   } catch (error) {
     console.log(error);
     logger.error(error);
@@ -104,14 +112,21 @@ const editBlogPost = async (request, res) => {
     const { status, message, blog, success, error } = result;
 
     if (error) {
-      return res
-        .status(status)
-        .render("edit", { title: "BLOG POST", post: blog, error, message });
+      return res.status(status).render("blog/posts/post/edit", {
+        title: "BLOG POST",
+        post: blog,
+        error,
+        message,
+      });
     }
 
     return res
       .status(status)
-      .render("edit", { title: "BLOG POST", post: blog, message });
+      .render("blog/posts/post/edit", {
+        title: "BLOG POST",
+        post: blog,
+        message,
+      });
   } catch (error) {
     logger.error(error);
     res.status(500).json({ message: "Error creating blog post" });

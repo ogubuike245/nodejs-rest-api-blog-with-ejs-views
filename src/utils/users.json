@@ -1,0 +1,23 @@
+[{
+  "_id": {
+    "$oid": "6421a1bc1fc677939b37dfde"
+  },
+  "email": "ogubuike245@gmail.com",
+  "password": "$2b$10$kY5aN7/JPWoEKbb/NYcpTuej0Uyg.vEcQRflaQyjoocXz0rYb9Poa",
+  "firstname": "ogubuike",
+  "lastname": "emejuru",
+  "nickname": "ogu23",
+  "profession": "mechanical engineer",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6422ccb886ecec20bcad0427"
+  },
+  "email": "ben@gmail.com",
+  "password": "$2b$10$UrwMp/j2uQCyxmX5DZBZTeFq2iiqYcS1f7Ct8HY74ABQYBaruDKZq",
+  "firstname": "ben",
+  "lastname": "kine",
+  "nickname": "ben",
+  "profession": "geologist",
+  "__v": 0
+}]

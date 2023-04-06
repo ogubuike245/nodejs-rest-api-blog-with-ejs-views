@@ -3,39 +3,40 @@
   <%- include("../../partials/head.ejs") %>
   <body>
     <%- include("../../partials/navbar.ejs") %>
-
-    <section>
+    <section class="blogs__container">
       <div>
-        <h1>BLOGS</h1>
+        <h1>ALL BLOGS</h1>
       </div>
 
-      <div>
+      <article class="blog">
         <% for (let blog of blogs) { %>
 
-        <div>
+        <div class="details">
+          <img src="/images/bg4.jpg" alt="IMAGE" />
           <div>
-            <div>
-              <div>
-                <span><%= blog?.category %></span>
-              </div>
-              <a href="/api/v1/blog/post/<%=blog?._id %>">
-                <img src="/images/hero.jpg" alt="IMAGE" />
-              </a>
-              <h2><%= blog.title.substring(0, 70) + '...' %></h2>
-              <p><%= blog.snippet.substring(0, 70) + '...' %></p>
-              <a href="/api/v1/user/profile/<%=blog?.postedBy?._id %>">
-                <img alt="blog" src="/images/hero.jpg" />
-                <span><%= blog?.postedBy?.firstname %></span>
-                <span><%= blog?.postedBy?.profession %></span>
-              </a>
-              <a href="/api/v1/blog/post/<%=blog?._id %>">
-                <button>Read More</button>
-              </a>
-            </div>
+            <h2><%= blog.title.substring(0, 70) + '...' %></h2>
+          </div>
+          <div>
+            <p><%= blog.snippet.substring(0, 70) + '...' %></p>
+          </div>
+          <div>
+            <a href="/api/v1/user/profile/<%=blog?.postedBy?._id %>">
+              Posted By : <%= blog?.postedBy?.firstname %>
+            </a>
+            <span><%= blog?.postedBy?.profession %></span>
+          </div>
+
+          <div>
+            <a href="/api/v1/blog/post/<%=blog?._id %>">
+              <button>Read More</button>
+            </a>
+          </div>
+          <div>
+            <span><%= blog?.category %></span>
           </div>
         </div>
         <% } %>
-      </div>
+      </article>
     </section>
 
     <%- include('../../partials/footer'); -%>

@@ -3,25 +3,17 @@
   <%- include("./partials/head.ejs") %>
   <body>
     <%- include("./partials/navbar.ejs") %>
-
-    <section>
-      <div>
-        <div>
-          <h1>Your Sports and Web Development Technology Blog</h1>
-          <p>
-            Welcome to our blog, where we share the latest news, insights and
-            trends in the world of sports and web development technology. Stay
-            up-to-date with the latest industry news, learn new skills and get
-            inspired by the stories of others.
-          </p>
-        </div>
-        <div>
-          <button>Get Started</button>
-        </div>
+    <section class="hero">
+      <div class="content">
+        <h3>The Blog</h3>
+        <h1>Writings From GUBI</h1>
+        <h6>The Latest Industry News, Technologies and Resources</h6>
       </div>
-    </section>
 
-    <%- include("./blog/posts/featured/index.ejs") %> <%-
-    include('./partials/footer'); -%>
+      <div class="featured"></div>
+    </section>
+    <main class="home"><%- include("./blog/posts/featured/index.ejs") %></main>
+
+    <%- include('./partials/footer'); -%>
   </body>
 </html>

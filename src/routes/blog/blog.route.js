@@ -17,7 +17,7 @@ const blogRouter = express.Router();
 
 blogRouter.get("/posts", blogPostsPage);
 blogRouter.get("/create", restrictToAuthenticatedUser, createBlogPostPage);
-blogRouter.get("/post/:id", restrictToAuthenticatedUser, getSingleBlogPostPage);
+blogRouter.get("/post/:id", getSingleBlogPostPage);
 blogRouter.post("/create/post", restrictToAuthenticatedUser, createBlogPost);
 blogRouter.get("/edit/post/:id", restrictToAuthenticatedUser, editBlogPostPage);
 blogRouter.post("/edit/post/:id", restrictToAuthenticatedUser, editBlogPost);

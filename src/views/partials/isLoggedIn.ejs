@@ -1,17 +1,11 @@
-<a href="/">
-  <button>Home</button>
-</a>
-
-<a href="/api/v1/blog/posts">
-  <button>All Blogs</button>
-</a>
-<a href="/api/v1/blog/create">
-  <button>Create Blog Post</button>
-</a>
-
-<a href="/api/v1/user/profile/<%= user._id %>">
-  <button>Profile</button>
-</a>
-<a href="/api/v1/user/logout">
-  <button>Logout</button>
-</a>
+<ul>
+  <li class="action">
+    <a href="/api/v1/blog/create"> CREATE NEW POST </a>
+  </li>
+  <li class="action">
+    <a href="/api/v1/user/profile/<%= user._id %>"> PROFILE </a>
+  </li>
+  <li class="action primary">
+    <a href="/api/v1/user/logout"> LOGOUT </a>
+  </li>
+</ul>

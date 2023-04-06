@@ -1,11 +1,24 @@
-<header>
-  <div>
-    <nav>
-      <a href="/">
-        <span>Buike</span>
-      </a>
-      <% if (locals.user) { %> <%- include("./isLoggedIn.ejs") %> <% } else { %>
-      <%- include("./isLoggedOut.ejs") %> <% } %>
-    </nav>
-  </div>
+<header class="nav__header">
+  <nav>
+    <ul>
+      <div class="logo">
+        <a href="/">
+          <span>Buike</span>
+        </a>
+      </div>
+
+      <div class="std">
+        <li>
+          <a href="/"> HOME </a>
+        </li>
+        <li>
+          <a href="/api/v1/blog/posts"> BLOGS </a>
+        </li>
+      </div>
+      <div>
+        <% if (locals.user) { %> <%- include("./isLoggedIn.ejs") %> <% } else {
+        %> <%- include("./isLoggedOut.ejs") %> <% } %>
+      </div>
+    </ul>
+  </nav>
 </header>

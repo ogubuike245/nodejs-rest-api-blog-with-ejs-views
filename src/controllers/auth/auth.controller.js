@@ -2,7 +2,7 @@ const {
   registerUserService,
   loginUserService,
   // refreshAccessTokenService,
-} = require("../services/auth.service.js");
+} = require("../../services/auth/auth.service");
 
 // GET ROUTES CONTROLLERS
 

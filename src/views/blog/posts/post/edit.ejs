@@ -7,8 +7,8 @@
     <section>
       <form
         id="editBlogForm"
+        class="editBlogForm"
         action="/api/v1/blog/edit/post/<%= post._id %>"
-        method="POST"
       >
         <h2>Edit Blog Post</h2>
 
@@ -58,12 +58,13 @@
           />
         </div>
 
-        <button>Submit</button>
+        <button type="submit">Submit</button>
         <% if (locals.error) { %>
         <p><%= message %></p>
         <% } %>
       </form>
     </section>
     <%- include('../../../partials/footer'); -%>
+    <script src="/js/edit-blog__script.js"></script>
   </body>
 </html>

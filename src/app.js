@@ -7,20 +7,20 @@ const compression = require("compression");
 const helmet = require("helmet");
 
 // import database config
-const { connectToDatabase } = require("./config/config.js");
+const { connectToDatabase } = require("./config/config");
 
 // import middlewares
 const {
   allowedMethods,
   checkForLoggedInUser,
   errorHandler,
-} = require("./middlewares/auth.middleware.js");
+} = require("./middlewares/auth.middleware");
 
 // import app routes
-const homeRoute = require("./routes/home.route.js");
-const authRoutes = require("./routes/auth.route.js");
-const userRoutes = require("./routes/user.route.js");
-const blogRoutes = require("./routes/blog.route.js");
+const homeRoute = require("./routes/home.route");
+const authRoutes = require("./routes/auth/auth.route");
+const userRoutes = require("./routes/user/user.route");
+const blogRoutes = require("./routes/blog/blog.route");
 
 // app configurations
 const app = express();

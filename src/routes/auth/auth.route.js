@@ -4,9 +4,8 @@ const {
   userSignupController,
   userLoginController,
   loginPage,
-  // refreshAccessTokenController,
-} = require("../controllers/auth/auth.controller.js");
-const { isLoggedIn } = require("../../middlewares/auth.middleware.js");
+} = require("../../controllers/auth/auth.controller");
+const { isLoggedIn } = require("../../middlewares/auth.middleware");
 
 // FILE IMPORTS
 
@@ -15,6 +14,5 @@ authRouter.get("/signup", signupPage);
 authRouter.get("/login", isLoggedIn, loginPage);
 authRouter.post("/signup", userSignupController);
 authRouter.post("/login", userLoginController);
-// authRouter.post("/refresh-token", refreshAccessTokenController);
 
 module.exports = authRouter;

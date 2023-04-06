@@ -6,7 +6,7 @@ const {
   getSingleBlogPostPage,
   editBlogPostPage,
   editBlogPost,
-} = require("../controllers/blog/blog.controller");
+} = require("../../controllers/blog/blog.controller");
 const {
   restrictToAuthenticatedUser,
 } = require("../../middlewares/auth.middleware");

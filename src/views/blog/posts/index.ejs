@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("./partials/head.ejs") %>
+  <%- include("../../partials/head.ejs") %>
   <body>
-    <%- include("./partials/navbar.ejs") %>
-    <section class="hero">
-      <div class="content">
-        <h3>Featured Blogs</h3>
-        <h1>Writings From GUBI</h1>
-        <h6>The Latest Industry News, Technologies and Resources</h6>
-      </div>
-      <!-- <div class="featured"></div> -->
-    </section>
-    <main class="home">
-      <section class="blogs">
-        <% for (let blog of blogs.filter(blog => blog.featured)) { %>
+    <%- include("../../partials/navbar.ejs") %>
+
+    <section class="blogs__container">
+      <article class="hero">
+        <div class="content">
+          <h3>ALL Blogs</h3>
+          <h1>Writings From GUBI</h1>
+          <h6>The Latest Industry News, Technologies and Resources</h6>
+        </div>
+
+        <div class="featured"></div>
+      </article>
+      <article class="blog">
+        <% for (let blog of blogs) { %>
 
         <div class="details">
           <a href="/api/v1/blog/post/<%=blog?._id %>">
@@ -43,9 +45,9 @@
           </div>
         </div>
         <% } %>
-      </section>
-    </main>
+      </article>
+    </section>
 
-    <%- include('./partials/footer'); -%>
+    <%- include('../../partials/footer'); -%>
   </body>
 </html>

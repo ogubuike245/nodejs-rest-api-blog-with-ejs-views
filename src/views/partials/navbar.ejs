@@ -1,35 +1,46 @@
-<header
-  class="sticky top-0 z-50 text-gray-400 bg-gray-900 body-font m-2 rounded border-b-2 border-gray-200"
->
-  <div
-    class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
-  >
-    <a
-      href="/"
-      class="flex title-font font-medium items-center text-white mb-4 md:mb-0"
-    >
-      <svg
-        xmlns="http://www.w3.org/100/svg"
-        fill="none"
-        stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
-        class="w-10 h-10 text-white p-2 bg-teal-600 rounded-bl-full"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-        ></path>
-      </svg>
-      <span class="ml-3 text-xl">Buike</span>
-    </a>
+<header class="nav__header">
+  <nav>
+    <ul>
+      <div class="nav-logo">
+        <a href="/">
+          <span>GUBI</span>
+        </a>
+      </div>
 
-    <nav
-      class="md:ml-auto flex flex-wrap items-center text-base justify-center"
-    >
-      <% if (locals.user) { %> <%- include("./isLoggedIn.ejs") %> <% } else { %>
-      <%- include("./isLoggedOut.ejs") %> <% } %>
-    </nav>
-  </div>
+      <div class="nav-constant">
+        <li>
+          <a href="/"> HOME </a>
+        </li>
+        <li>
+          <a href="/api/v1/blog/posts"> BLOGS </a>
+        </li>
+      </div>
+      <div class="nav-action">
+        <% if (locals.user) { %>
+        <li class="action">
+          <a href="/api/v1/blog/create"> CREATE POST </a>
+        </li>
+        <li class="action">
+          <a href="/api/v1/user/profile/<%= user._id %>"> PROFILE </a>
+        </li>
+        <li class="action primary">
+          <a href="/api/v1/user/logout"> Logout </a>
+        </li>
+
+        <% } else { %>
+
+        <li class="action">
+          <a href="/api/v1/auth/login"> LOGIN </a>
+        </li>
+        <li class="action primary">
+          <a href="/api/v1/auth/signup"> SIGN UP </a>
+        </li>
+        <% } %>
+      </div>
+
+      <div class="hamburger">
+        <li>MENU</li>
+      </div>
+    </ul>
+  </nav>
 </header>

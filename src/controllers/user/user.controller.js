@@ -1,4 +1,4 @@
-const User = require("../models/user.model");
+const User = require("../../models/user/user.model");
 
 const getUserProfile = async (req, res) => {
   const { id } = req.params;
@@ -7,7 +7,7 @@ const getUserProfile = async (req, res) => {
     const user = await User.findById(id);
     res
       .status(200)
-      .render("profile", { success: true, user, title: "PROFILE PAGE" });
+      .render("user/profile", { success: true, user, title: "PROFILE PAGE" });
   } catch (error) {
     console.log(error);
   }

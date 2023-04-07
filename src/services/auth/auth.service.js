@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
-const User = require("../models/user.model");
-const { createToken } = require("../utils/helpers");
+const User = require("../../models/user/user.model");
+const { createToken } = require("../../utils/helpers");
 
 registerUserService = async function (userData) {
   try {

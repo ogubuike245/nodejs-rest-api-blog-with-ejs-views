@@ -1,4 +1,4 @@
-const Blog = require("../models/blog.model");
+const Blog = require("../../models/blog/blog.model");
 
 exports.getAllBlogsService = async function () {
   try {
@@ -99,10 +99,12 @@ exports.editSingleBlogPagePostService = async function (userData) {
 exports.editSingleBlogPostService = async function (blogData) {
   const { id, title, category, snippet, content } = blogData;
   try {
-    const blog = await Blog.findOneAndUpdate(
-      { _id: id },
-      { title, category, snippet, content }
-    );
+    const blog = await Blog.findByIdAndUpdate(id, {
+      title,
+      category,
+      snippet,
+      content,
+    });
 
     if (!blog) {
       return {

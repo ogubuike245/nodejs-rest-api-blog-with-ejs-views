@@ -1,24 +1,47 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/user.model.js");
+const User = require("../models/user/user.model");
 
 // CHECK IF THERE IS A LOGGED IN USER FROM THE JWT TOKEN
-
 const checkForLoggedInUser = async (request, res, next) => {
   try {
-    const { JWT_NAME } = request.cookies;
-    const token = JWT_NAME;
-    if (!token) return next();
+    const jwt_token = request.cookies.JWT_NAME;
 
-    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+    if (!jwt_token) {
+      return next();
+    }
+
+    const decodedToken = jwt.verify(jwt_token, process.env.JWT_SECRET);
     const user = await User.findById(decodedToken.id);
-    if (!user) return res.status(404).json({ message: "NO USER" });
-    request.user = res.locals.user = user;
-    return next();
+    if (!user) {
+      res.clearCookie("JWT_NAME");
+    } else {
+      request.user = res.locals.user = user;
+      return next();
+    }
   } catch (err) {
-    // Other errors, log and return error response
     console.error(err);
     request.user = res.locals.user = null;
-    return next(err);
+    return next();
+  }
+};
+
+const restrictToAuthenticatedUser = (request, res, next) => {
+  if (!request.user) {
+    // Redirect to login page if user is not authenticated
+    return res.redirect("/api/v1/auth/login");
+  }
+  // Allow user to proceed to the next middleware function
+  next();
+};
+
+const restrictToReadAccess = (request, res, next) => {
+  // Check if user has read access to the current route
+  if (request.method === "GET") {
+    // Allow user to proceed to the next middleware function if the request method is GET
+    next();
+  } else {
+    // Redirect to home page if user does not have read access
+    return res.redirect("/");
   }
 };
 
@@ -28,25 +51,6 @@ const isLoggedIn = (request, response, next) => {
     response.redirect("/");
   } else {
     next();
-  }
-};
-
-// CHECK TO SEE IF THE JSON WEB TOKEN EXISTS AND ALSO IF THE TOKEN HAS BEEN VERIFIED
-const tokenVerification = async (request, res, next) => {
-  try {
-    const { JWT_NAME } = request.cookies;
-    const token = JWT_NAME;
-
-    if (!token) {
-      return res.redirect("/api/v1/auth/login");
-    }
-    const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findById(decodedToken.id);
-    request.user = res.locals.user = user;
-    return next();
-  } catch (err) {
-    console.error(err);
-    return res.redirect("/api/v1/auth/login");
   }
 };
 
@@ -81,10 +85,9 @@ const errorHandler = (err, req, res, next) => {
 };
 
 module.exports = {
-  tokenVerification,
   isLoggedIn,
   checkForLoggedInUser,
   allowedMethods,
-
+  restrictToAuthenticatedUser,
   errorHandler,
 };

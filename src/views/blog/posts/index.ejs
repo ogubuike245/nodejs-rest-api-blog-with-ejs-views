@@ -19,10 +19,10 @@
           <a href="/api/v1/blog/post/<%=blog?._id %>">
             <img src="/images/bg5.jpg" alt="IMAGE" />
           </a>
-          <div>
+          <div class="title">
             <h2><%= blog.title.substring(0, 70) + '...' %></h2>
           </div>
-          <div>
+          <div class="snippet">
             <p><%= blog.snippet.substring(0, 70) + '...' %></p>
           </div>
           <div class="blog-info">

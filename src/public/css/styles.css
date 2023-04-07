@@ -57,14 +57,14 @@ header nav ul {
   align-items: center;
   gap: 2.5rem;
 }
-header nav ul li {
+header nav ul a {
   padding: 0.4em;
   transition: border-bottom 0.3s ease-in-out;
 }
-header nav ul li:hover {
+header nav ul a:hover {
   border-bottom: 1px solid rgb(250, 241, 228);
 }
-header nav ul li a {
+header nav ul a li {
   color: rgb(250, 241, 228);
 }
 header nav ul .nav-logo,
@@ -90,10 +90,10 @@ header nav ul .nav-constant {
   transition: border-color 0.5s; /* Add the transition property */
   animation: borderAnimation 10s infinite; /* Add the animation property */
 }
-header nav ul .nav-constant li {
+header nav ul .nav-constant a {
   padding: 0 1em;
 }
-header nav ul .nav-constant li:not(:nth-child(2)) {
+header nav ul .nav-constant a:not(:nth-child(2)) {
   border-right: 1px solid darkslategrey;
   border-radius: 0;
 }
@@ -202,10 +202,14 @@ main.home .blogs .details {
   max-width: 450px;
   width: 350px;
   display: grid;
-  grid-template-rows: 200px 100px repeat(3, 50px);
+  grid-template-rows: 200px repeat(4, 60px);
   background: rgb(255, 255, 255);
   border: 1px dashed rgb(201, 201, 201);
   border-radius: 10px;
+  gap: 0.2rem;
+}
+main.home .blogs .details .title h2 {
+  font-size: 1rem;
 }
 main.home .blogs .details img {
   height: 100%;
@@ -286,10 +290,11 @@ main.home .blogs .details .category span {
   display: grid;
   place-items: center;
   background: rgba(0, 0, 0, 0.253);
-  padding: 0.5rem;
+  padding: 0.1rem;
   border-radius: 2000px;
   font-size: 9px;
   font-weight: 900;
+  width: 100px;
 }
 /*  ALL BLOGS VIEW */
 .blogs__container {
@@ -316,10 +321,14 @@ main.home .blogs .details .category span {
   max-width: 450px;
   width: 350px;
   display: grid;
-  grid-template-rows: 200px 100px repeat(3, 50px);
+  grid-template-rows: 200px repeat(4, 50px);
   background: rgb(255, 255, 255);
   border: 1px dashed rgb(201, 201, 201);
   border-radius: 10px;
+  gap: 0.2rem;
+}
+.blogs__container .blog .details .title h2 {
+  font-size: 1rem;
 }
 .blogs__container .blog .details img {
   height: 100%;
@@ -400,8 +409,9 @@ main.home .blogs .details .category span {
   display: grid;
   place-items: center;
   background: rgba(0, 0, 0, 0.253);
-  padding: 0.5rem;
+  padding: 0.1rem;
   border-radius: 2000px;
   font-size: 9px;
   font-weight: 900;
+  width: 100px;
 }

@@ -8,33 +8,35 @@
       </div>
 
       <div class="nav-constant">
-        <li>
-          <a href="/"> HOME </a>
-        </li>
-        <li>
-          <a href="/api/v1/blog/posts"> BLOGS </a>
-        </li>
+        <a href="/">
+          <li>HOME</li>
+        </a>
+        <a href="/api/v1/blog/posts">
+          <li>BLOGS</li>
+        </a>
       </div>
       <div class="nav-action">
         <% if (locals.user) { %>
-        <li class="action">
-          <a href="/api/v1/blog/create"> CREATE POST </a>
-        </li>
-        <li class="action">
-          <a href="/api/v1/user/profile/<%= user._id %>"> PROFILE </a>
-        </li>
-        <li class="action primary">
-          <a href="/api/v1/user/logout"> Logout </a>
-        </li>
+
+        <a href="/api/v1/blog/create" class="action">
+          <li>CREATE POST</li>
+        </a>
+        <a href="/api/v1/user/profile/<%= user._id %>" class="action">
+          <li>PROFILE</li>
+        </a>
+        <a href="/api/v1/user/logout" class="action primary">
+          <li>Logout</li>
+        </a>
 
         <% } else { %>
 
-        <li class="action">
-          <a href="/api/v1/auth/login"> LOGIN </a>
-        </li>
-        <li class="action primary">
-          <a href="/api/v1/auth/signup"> SIGN UP </a>
-        </li>
+        <a href="/api/v1/auth/login" class="action">
+          <li>LOGIN</li>
+        </a>
+        <a href="/api/v1/auth/signup" class="action primary">
+          <li>SIGN UP</li>
+        </a>
+
         <% } %>
       </div>
 

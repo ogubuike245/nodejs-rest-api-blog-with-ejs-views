@@ -19,10 +19,16 @@ main.home {
       max-width: 450px;
       width: 350px;
       display: grid;
-      grid-template-rows: 200px 100px repeat(3, 50px);
+      grid-template-rows: 200px repeat(4, 60px);
       background: rgb(255, 255, 255);
       border: 1px dashed rgb(201, 201, 201);
       border-radius: 10px;
+      gap: 0.2rem;
+      .title {
+        h2 {
+          font-size: 1rem;
+        }
+      }
 
       img {
         height: 100%;
@@ -101,7 +107,6 @@ main.home {
           outline: none;
           border: none;
           width: 50px;
-
           border-radius: 10px;
           cursor: pointer;
           background: rgb(73, 70, 255);
@@ -117,10 +122,11 @@ main.home {
         display: grid;
         place-items: center;
         background: rgba(0, 0, 0, 0.253);
-        padding: 0.5rem;
+        padding: 0.1rem;
         border-radius: 2000px;
         font-size: 9px;
         font-weight: 900;
+        width: 100px;
       }
     }
   }

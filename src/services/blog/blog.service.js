@@ -99,12 +99,18 @@ exports.editSingleBlogPagePostService = async function (userData) {
 exports.editSingleBlogPostService = async function (blogData) {
   const { id, title, category, snippet, content } = blogData;
   try {
-    const blog = await Blog.findByIdAndUpdate(id, {
-      title,
-      category,
-      snippet,
-      content,
-    });
+    const blog = await Blog.findByIdAndUpdate(
+      id,
+      {
+        $set: {
+          title,
+          category,
+          snippet,
+          content,
+        },
+      },
+      { new: true }
+    );
 
     if (!blog) {
       return {
@@ -118,6 +124,35 @@ exports.editSingleBlogPostService = async function (blogData) {
       message: blog.title,
       status: 200,
       blog,
+    };
+  } catch (error) {
+    return {
+      error: true,
+      message: error.message,
+      status: 500,
+    };
+  }
+};
+
+exports.deleteSingleBlogPostService = async function (blogData) {
+  const { id, title, category, snippet, content } = blogData;
+  try {
+    const blog = await Blog.findById(id);
+
+    if (!blog) {
+      return {
+        error: true,
+        message: "Blog Post Does not exist",
+        status: 404,
+      };
+    }
+
+    const deletedBlog = await Blog.findByIdAndDelete(id);
+
+    return {
+      success: true,
+      message: `Successfully deleted blog post with title: ${blog.title}`,
+      status: 200,
     };
   } catch (error) {
     return {

@@ -5,6 +5,7 @@ const {
   editSingleBlogPagePostService,
   editBlogService,
   editSingleBlogPostService,
+  deleteSingleBlogPostService,
 } = require("../../services/blog/blog.service");
 const { logger } = require("../../utils/logger");
 
@@ -124,6 +125,32 @@ const editBlogPost = async (request, res) => {
   }
 };
 
+const deleteBlogPost = async (request, res) => {
+  try {
+    const { id } = request.params;
+
+    const result = await deleteSingleBlogPostService({ id });
+
+    const { status, message, success, error } = result;
+
+    if (error) {
+      return res.status(status).json({
+        error,
+        message,
+      });
+    }
+
+    return res.status(status).json({
+      post: blog,
+      message,
+      success,
+    });
+  } catch (error) {
+    logger.error(error);
+    res.status(500).json({ message: "Error deleting blog post" });
+  }
+};
+
 module.exports = {
   blogPostsPage,
   createBlogPostPage,
@@ -131,4 +158,5 @@ module.exports = {
   editBlogPostPage,
   editBlogPost,
   getSingleBlogPostPage,
+  deleteBlogPost,
 };

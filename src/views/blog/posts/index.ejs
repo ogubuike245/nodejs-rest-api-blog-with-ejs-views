@@ -3,35 +3,44 @@
   <%- include("../../partials/head.ejs") %>
   <body>
     <%- include("../../partials/navbar.ejs") %>
-    <section class="blogs__container">
-      <div>
-        <h1>ALL BLOGS</h1>
-      </div>
 
+    <section class="blogs__container">
+      <article class="hero">
+        <div class="content">
+          <h3>ALL Blogs</h3>
+          <h1>Writings From GUBI</h1>
+          <h6>The Latest Industry News, Technologies and Resources</h6>
+        </div>
+
+        <div class="featured"></div>
+      </article>
       <article class="blog">
         <% for (let blog of blogs) { %>
 
         <div class="details">
-          <img src="/images/bg4.jpg" alt="IMAGE" />
+          <a href="/api/v1/blog/post/<%=blog?._id %>">
+            <img src="/images/bg5.jpg" alt="IMAGE" />
+          </a>
           <div>
             <h2><%= blog.title.substring(0, 70) + '...' %></h2>
           </div>
           <div>
             <p><%= blog.snippet.substring(0, 70) + '...' %></p>
           </div>
-          <div>
+          <div class="blog-user">
             <a href="/api/v1/user/profile/<%=blog?.postedBy?._id %>">
-              Posted By : <%= blog?.postedBy?.firstname %>
+              <img src="/images/bg.jpg" alt="" />
+              <%= blog?.postedBy?.firstname %>
             </a>
             <span><%= blog?.postedBy?.profession %></span>
           </div>
 
-          <div>
+          <div class="read-btn">
             <a href="/api/v1/blog/post/<%=blog?._id %>">
               <button>Read More</button>
             </a>
           </div>
-          <div>
+          <div class="category">
             <span><%= blog?.category %></span>
           </div>
         </div>

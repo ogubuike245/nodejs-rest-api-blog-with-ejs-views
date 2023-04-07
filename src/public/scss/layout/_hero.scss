@@ -1,0 +1,74 @@
+@keyframes backgroundAnimation {
+  0% {
+    background-color: rgb(17, 17, 17);
+  }
+  50% {
+    background-color: rgb(34, 34, 34);
+  }
+  100% {
+    background-color: rgb(17, 17, 17);
+  }
+}
+
+/* HERO */
+.hero {
+  height: 60vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 3rem;
+  margin: 0 2rem;
+  background: rgb(17, 17, 17);
+  border-bottom-left-radius: 905px;
+  border-bottom-right-radius: 905px;
+  animation: backgroundAnimation 20s infinite; /* Add the animation property */
+
+  .content {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 2rem;
+    border-bottom: 2px solid rgb(24, 24, 24);
+    border-left: 2px solid rgb(24, 24, 24);
+    border-bottom-left-radius: 515px;
+    border-bottom-right-radius: 515px;
+
+    h1 {
+      font-size: 130px;
+      font-weight: 900;
+      font-style: normal;
+      color: rgb(255, 255, 255);
+      color: rgb(250, 241, 228);
+    }
+    h6 {
+      font-size: 20px;
+      color: rgb(127, 135, 151);
+      font-style: italic;
+    }
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .hero {
+    height: 60vh;
+    border-bottom-left-radius: 905px;
+    border-bottom-right-radius: 905px;
+
+    .content {
+      h1 {
+        font-size: 50px;
+        text-align: center;
+      }
+
+      h6 {
+        font-size: 15px;
+        text-align: center;
+      }
+    }
+  }
+}
+@media only screen and (min-width: 700px) {
+}

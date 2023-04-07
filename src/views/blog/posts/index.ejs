@@ -7,13 +7,11 @@
     <section class="blogs__container">
       <article class="hero">
         <div class="content">
-          <h3>ALL Blogs</h3>
-          <h1>Writings From GUBI</h1>
-          <h6>The Latest Industry News, Technologies and Resources</h6>
+          <h1>Immerse. Explore. Discover.</h1>
+          <h6>- Writings From Gubi</h6>
         </div>
-
-        <div class="featured"></div>
       </article>
+
       <article class="blog">
         <% for (let blog of blogs) { %>
 
@@ -27,19 +25,22 @@
           <div>
             <p><%= blog.snippet.substring(0, 70) + '...' %></p>
           </div>
-          <div class="blog-user">
+          <div class="blog-info">
             <a href="/api/v1/user/profile/<%=blog?.postedBy?._id %>">
-              <img src="/images/bg.jpg" alt="" />
-              <%= blog?.postedBy?.firstname %>
+              <img src="/images/bg.jpg" alt="Profile picture" />
+              <div>
+                <p><%= blog?.postedBy?.firstname %></p>
+                <span><%= blog?.postedBy?.profession %></span>
+              </div>
             </a>
-            <span><%= blog?.postedBy?.profession %></span>
+
+            <div class="read-btn">
+              <a href="/api/v1/blog/post/<%=blog?._id %>">
+                <button><i class="fa fa-arrow-right"></i></button>
+              </a>
+            </div>
           </div>
 
-          <div class="read-btn">
-            <a href="/api/v1/blog/post/<%=blog?._id %>">
-              <button>Read More</button>
-            </a>
-          </div>
           <div class="category">
             <span><%= blog?.category %></span>
           </div>

@@ -359,7 +359,7 @@ main.home .blogs .details .category span {
   font-size: 2rem;
 }
 .stack .card .card-content .content a {
-  width: 30%;
+  width: 50%;
   margin: auto;
 }
 .stack .card .card-content .content a button {
@@ -378,6 +378,35 @@ main.home .blogs .details .category span {
   font-size: 1rem;
 }
 
+@media only screen and (max-width: 699px) {
+  .card-content .content h2 {
+    font-size: 25px !important;
+  }
+  .card-content .content p {
+    font-size: 1.2rem !important;
+    color: dimgrey;
+  }
+  .card-content .content a button {
+    padding: 1rem !important;
+  }
+  .card-content .content a button span {
+    font-size: 0.8rem !important;
+  }
+}
+@media only screen and (min-width: 844px) {
+  .card-content .content h2 {
+    font-size: 45px;
+  }
+  .card-content .content p {
+    font-size: 2rem;
+  }
+  .card-content .content a button {
+    padding: 1rem !important;
+  }
+  .card-content .content a button span {
+    font-size: 1.5rem !important;
+  }
+}
 /*  ALL BLOGS VIEW */
 .blogs__container {
   max-width: 90%;

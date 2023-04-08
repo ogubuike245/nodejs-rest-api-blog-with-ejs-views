@@ -204,7 +204,7 @@ main.home {
         }
 
         a {
-          width: 30%;
+          width: 50%;
           margin: auto;
           button {
             width: 100%;
@@ -220,6 +220,54 @@ main.home {
             span {
               font-size: 1rem;
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 699px) {
+  .card-content {
+    .content {
+      h2 {
+        font-size: 25px !important;
+      }
+
+      p {
+        font-size: 1.2rem !important;
+        color: dimgrey;
+      }
+
+      a {
+        button {
+          padding: 1rem !important;
+
+          span {
+            font-size: 0.8rem !important;
+          }
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width: 844px) {
+  .card-content {
+    .content {
+      h2 {
+        font-size: 45px;
+      }
+
+      p {
+        font-size: 2rem;
+      }
+
+      a {
+        button {
+          padding: 1rem !important;
+
+          span {
+            font-size: 1.5rem !important;
           }
         }
       }

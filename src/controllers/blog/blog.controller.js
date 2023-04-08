@@ -24,8 +24,9 @@ const createBlogPostPage = async (req, res) => {
 const createBlogPost = async (request, res) => {
   try {
     const { title, category, snippet, content } = request.body;
+    // console.log(request.user._id, request.body);
 
-    const postedBy = request.body.postedBy || request.user._id;
+    const postedBy = request.user._id;
 
     const result = await createBlogService({
       title,
@@ -130,18 +131,18 @@ const deleteBlogPost = async (request, res) => {
     const { id } = request.params;
     console.log(id);
 
-    // const result = await deleteSingleBlogPostService({ id });
+    const result = await deleteSingleBlogPostService({ id });
 
-    // const { status, message, success, error } = result;
+    const { status, message, success, error } = result;
 
-    // if (error) {
-    //   return res.status(status).json({
-    //     error,
-    //     message,
-    //   });
-    // }
+    if (error) {
+      return res.status(status).json({
+        error,
+        message,
+      });
+    }
 
-    // return res.redirect("/");
+    return res.redirect("/");
   } catch (error) {
     logger.error(error);
     res.status(500).json({ message: "Error deleting blog post" });

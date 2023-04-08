@@ -22,7 +22,7 @@ blogRouter.get("/post/:id", getSingleBlogPostPage);
 blogRouter.post("/create/post", restrictToAuthenticatedUser, createBlogPost);
 blogRouter.get("/edit/post/:id", restrictToAuthenticatedUser, editBlogPostPage);
 blogRouter.post("/edit/post/:id", restrictToAuthenticatedUser, editBlogPost);
-blogRouter.delete(
+blogRouter.post(
   "/delete/post/:id",
   restrictToAuthenticatedUser,
   deleteBlogPost

@@ -128,23 +128,20 @@ const editBlogPost = async (request, res) => {
 const deleteBlogPost = async (request, res) => {
   try {
     const { id } = request.params;
+    console.log(id);
 
-    const result = await deleteSingleBlogPostService({ id });
+    // const result = await deleteSingleBlogPostService({ id });
 
-    const { status, message, success, error } = result;
+    // const { status, message, success, error } = result;
 
-    if (error) {
-      return res.status(status).json({
-        error,
-        message,
-      });
-    }
+    // if (error) {
+    //   return res.status(status).json({
+    //     error,
+    //     message,
+    //   });
+    // }
 
-    return res.status(status).json({
-      post: blog,
-      message,
-      success,
-    });
+    // return res.redirect("/");
   } catch (error) {
     logger.error(error);
     res.status(500).json({ message: "Error deleting blog post" });

@@ -18,14 +18,21 @@
             <h1><%= post.snippet %></h1>
             <p><%= post.content %></p>
             <div>
-              <a href="/api/v1/blog/edit/post/<%= post._id %>">
-                <img src="/images/icons/edit.png" alt="EDIT " srcset="" />
-                EDIT POST</a
+              <button>
+                <a href="/api/v1/blog/edit/post/<%= post._id %>"
+                  >EDIT <i class="fa fa-trash"></i>
+                </a>
+              </button>
+
+              <form
+                action="/api/v1/blog/delete/post/<%= post._id %>"
+                method="POST"
               >
-              <a href="/api/v1/blog/edit/post/<%= post._id %>">
-                <img src="/images/icons/delete.png" alt="EDIT " srcset="" />
-                DELETE POST</a
-              >
+                <button type="submit">
+                  DELETE
+                  <i class="fa fa-trash"></i>
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -33,5 +40,7 @@
     </section>
 
     <%- include("../../../partials/footer.ejs") %>
+
+    <script src="/js/delete-blog__script.js"></script>
   </body>
 </html>

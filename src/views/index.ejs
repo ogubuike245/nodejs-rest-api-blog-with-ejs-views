@@ -9,44 +9,25 @@
         <h6>Cutting-Edge Insights</h6>
       </div>
     </section>
-    <main class="home">
-      <section class="blogs">
-        <% for (let blog of blogs.filter(blog => blog.featured)) { %>
+    <main class="home"></main>
 
-        <div class="details">
-          <a href="/api/v1/blog/post/<%=blog?._id %>">
-            <img src="/images/bg5.jpg" alt="IMAGE" />
-          </a>
-          <div class="title">
+    <div class="stack">
+      <% for (let blog of blogs.filter(blog => blog.featured)) { %>
+      <div class="card">
+        <div class="card-content">
+          <article class="content">
             <h2><%= blog.title.substring(0, 70) + '...' %></h2>
-          </div>
-          <div class="snippet">
             <p><%= blog.snippet.substring(0, 70) + '...' %></p>
-          </div>
-          <div class="blog-info">
-            <a href="/api/v1/user/profile/<%=blog?.postedBy?._id %>">
-              <img src="/images/bg.jpg" alt="Profile picture" />
-              <div>
-                <p><%= blog?.postedBy?.firstname %></p>
-                <span><%= blog?.postedBy?.profession %></span>
-              </div>
+
+            <a href="/api/v1/blog/post/<%=blog?._id %>">
+              <button class="action primary">
+                <span>READ MORE</span><i class="fa fa-arrow-right"></i>
+              </button>
             </a>
-
-            <div class="read-btn">
-              <a href="/api/v1/blog/post/<%=blog?._id %>">
-                <button><i class="fa fa-arrow-right"></i></button>
-              </a>
-            </div>
-          </div>
-
-          <div class="category">
-            <span><%= blog?.category %></span>
-          </div>
+          </article>
         </div>
-        <% } %>
-      </section>
-    </main>
-
-    <%- include('./partials/footer'); -%>
+      </div>
+      <% } %> <%- include('./partials/footer'); -%>
+    </div>
   </body>
 </html>

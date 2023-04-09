@@ -1,4 +1,4 @@
-# NODE-JS-BLOG
+# nodejs-rest-api-blog
 
 NODE-JS-BLOG is a blog built with Node.js and Express that allows users to create an account, login, and create blog posts.
 

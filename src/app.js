@@ -6,9 +6,6 @@ const cors = require("cors");
 const compression = require("compression");
 const helmet = require("helmet");
 
-// import database config
-const { connectToDatabase } = require("./config/config");
-
 // import middlewares
 const {
   allowedMethods,
@@ -24,7 +21,6 @@ const blogRoutes = require("./routes/blog/blog.route");
 
 // app configurations
 const app = express();
-connectToDatabase(app);
 
 //middleware and statics
 app.set("view engine", "ejs");

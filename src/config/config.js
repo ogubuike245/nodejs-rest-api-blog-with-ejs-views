@@ -24,5 +24,5 @@ const connectToDatabaseAndStartServer = (app) => {
 };
 
 module.exports = {
-  connectToDatabaseAndStartServer: connectToDatabaseAndStartServer,
+  connectToDatabaseAndStartServer,
 };

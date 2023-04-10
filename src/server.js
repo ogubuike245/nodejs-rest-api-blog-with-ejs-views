@@ -1,4 +1,4 @@
-import { connectToDatabaseAndStartServer } from "./config/config";
-import app from "./app";
+const config = require("./config/config");
+const app = require("./app");
 
-connectToDatabaseAndStartServer(app);
+config.connectToDatabaseAndStartServer(app);

@@ -1,18 +1,24 @@
 const mongoose = require("mongoose");
-const { logger } = require("../utils/logger");
+const { MONGODB_URI, API_PORT } = process.env;
 
-const { MONGO_DB_URI } = process.env;
+export const connectToDatabaseAndStartServer = (app) => {
+  mongoose.set("strictQuery", false);
+  mongoose.connection.on("connected", () => {
+    console.info(`CONNECTED TO DATABASE`);
 
-exports.connectToDatabase = function (app) {
-  try {
-    mongoose.set("strictQuery", false);
-    mongoose.connect(MONGO_DB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+    // Start the application after database connection is established
+
+    app.listen(API_PORT || 5000, (response) => {
+      console.info(`Server is running on PORT :${API_PORT}`);
     });
+  });
 
-    logger.info(`connected to database`.toUpperCase());
-  } catch (e) {
-    logger.error(e);
-  }
+  mongoose.connection.on("error", (error) => {
+    console.error(error);
+  });
+
+  mongoose.connect(MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 };

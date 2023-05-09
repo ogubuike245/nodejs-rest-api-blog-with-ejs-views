@@ -1,80 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("../partials/head.ejs") %>
+  <%- include("./partials/head.ejs") %>
   <body>
-    <%- include("../partials/navbar.ejs") %>
+    <%- include("./partials/navbar.ejs") %>
 
-    <section>
-      <div>
-        <form>
-          <h2>USER PROFILE</h2>
-
-          <div>
-            <label for="firstname">First Name</label>
-            <input
-              autocomplete="on"
-              disabled
-              type="text"
-              id="firstname"
-              name="firstname"
-              value="<%= user?.firstname %>"
-              required
-            />
-          </div>
-          <div>
-            <label for="lastname">Last Name</label>
-            <input
-              autocomplete="on"
-              disabled
-              type="text"
-              id="lastname"
-              name="lastname"
-              value="<%= user?.lastname %>"
-              required
-            />
-          </div>
-          <div>
-            <label for="nickname">Nckname</label>
-            <input
-              autocomplete="on"
-              disabled
-              type="text"
-              id="nickname"
-              name="nickname"
-              value="<%= user?.nickname %>"
-              required
-            />
-          </div>
-          <div>
-            <label for="profession">Profession</label>
-            <input
-              autocomplete="on"
-              disabled
-              type="text"
-              id="profession"
-              name="profession"
-              value="<%= user?.profession %>"
-              required
-            />
-          </div>
-          <div>
-            <label for="email">Email</label>
-            <input
-              autocomplete="on"
-              disabled
-              type="email"
-              id="email"
-              name="email"
-              value="<%= user?.email %>"
-              required
-            />
-          </div>
-
-          <button disabled>Submit</button>
-        </form>
-      </div>
-    </section>
-
-    <%- include("../partials/footer.ejs") %>
+    <main>
+      <h1>USER PROFILE</h1>
+    </main>
+    <%- include('./partials/footer'); -%>
   </body>
 </html>

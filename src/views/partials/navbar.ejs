@@ -1,48 +1,43 @@
-<header class="nav__header">
-  <nav>
-    <ul>
-      <div class="nav-logo">
-        <a href="/">
-          <span>G</span>
-        </a>
-      </div>
+<nav>
+  <div class="nav-header">
+    <div class="logo-container">
+      <a href="/">LOGO</a>
+    </div>
+    <i class="fa fa-bars" aria-hidden="true"></i>
+    <i class="fa fa-times" aria-hidden="true"></i>
+  </div>
 
-      <div class="nav-constant">
-        <a href="/">
-          <li>HOME</li>
-        </a>
-        <a href="/api/v1/blog/posts">
-          <li>BLOGS</li>
-        </a>
-      </div>
-      <div class="nav-action">
-        <% if (locals.user) { %>
+  <ul class="menu">
+    <li>
+      <a href="/"><i class="fa fa-home"></i>Home</a>
+    </li>
+    <li>
+      <a href="/api/v1/blog/posts"><i class="fa fa-blog"></i>Blogs</a>
+    </li>
 
-        <a href="/api/v1/blog/create" class="action">
-          <li>CREATE POST</li>
-        </a>
-        <a href="/api/v1/user/profile/<%= user._id %>" class="action">
-          <li>PROFILE</li>
-        </a>
-        <a href="/api/v1/user/logout" class="action primary">
-          <li>Logout</li>
-        </a>
+    <% if (locals.user) { %>
 
-        <% } else { %>
+    <li>
+      <a href="/api/v1/blog/create"><i class="fa fa-sign-in"></i>CREATE POST</a>
+    </li>
+    <li>
+      <a href="/api/v1/user/profile/<%= user._id %>"
+        ><i class="fa fa-sign-in"></i>PROFILE</a
+      >
+    </li>
+    <li>
+      <a href="/api/v1/user/logout">Logout</a>
+    </li>
 
-        <a href="/api/v1/auth/login" class="action">
-          <li>LOGIN</li>
-        </a>
-        <a href="/api/v1/auth/signup" class="action primary">
-          <li>SIGN UP</li>
-        </a>
+    <% } else { %>
 
-        <% } %>
-      </div>
+    <li>
+      <a href="/api/v1/auth/login"><i class="fa fa-sign-in"></i>Login</a>
+    </li>
+    <li>
+      <a href="/api/v1/auth/signup"><i class="fa fa-user-plus"></i>Sign Up</a>
+    </li>
 
-      <div class="hamburger">
-        <li>MENU</li>
-      </div>
-    </ul>
-  </nav>
-</header>
+    <% } %>
+  </ul>
+</nav>

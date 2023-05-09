@@ -1,9 +1,8 @@
 const {
-  createBlogService,
   getAllBlogsService,
+  createBlogService,
   getSingleBlogPostService,
   editSingleBlogPagePostService,
-  editBlogService,
   editSingleBlogPostService,
   deleteSingleBlogPostService,
 } = require("../../services/blog/blog.service");
@@ -13,18 +12,17 @@ const blogPostsPage = async (req, res) => {
   try {
     const result = await getAllBlogsService();
     const { posts } = result;
-    res.render("blog/posts/index", { title: "Blogs", blogs: posts });
+    res.render("blogs", { title: "Blogs", blogs: posts });
   } catch (error) {
     logger.error(error.message);
   }
 };
 const createBlogPostPage = async (req, res) => {
-  res.render("blog/posts/post/create", { title: "Create blog" });
+  res.render("create-blog", { title: "Create blog" });
 };
 const createBlogPost = async (request, res) => {
   try {
     const { title, category, snippet, content } = request.body;
-    // console.log(request.user._id, request.body);
 
     const postedBy = request.user._id;
 
@@ -44,6 +42,7 @@ const createBlogPost = async (request, res) => {
     res.status(500).json({ message: "Error creating blog post" });
   }
 };
+
 const getSingleBlogPostPage = async (req, res) => {
   const { id } = req.params;
 
@@ -58,7 +57,7 @@ const getSingleBlogPostPage = async (req, res) => {
       });
     }
 
-    return res.status(status).render("blog/posts/post/index", {
+    return res.status(status).render("blog", {
       title: "BLOG POST",
       post: blog,
       message,
@@ -83,7 +82,7 @@ const editBlogPostPage = async (req, res) => {
       });
     }
 
-    return res.status(status).render("blog/posts/post/edit", {
+    return res.status(status).render("edit-blog", {
       title: "BLOG POST",
       post: blog,
       message,

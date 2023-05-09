@@ -1,53 +1,12 @@
+<!DOCTYPE html>
 <html lang="en">
   <%- include("../partials/head.ejs") %>
-
   <body>
     <%- include("../partials/navbar.ejs") %>
 
-    <section>
-      <div>
-        <div>
-          <h1>Welcome to my Sports and Web Development Technology Blog!</h1>
-
-          <p>
-            Join the community of sports and web development technology
-            enthusiasts and stay updated on the latest news, trends, and
-            insights.
-          </p>
-        </div>
-
-        <div>
-          <form class="loginForm">
-            <h2>Login</h2>
-
-            <div>
-              <label for="email">Email</label>
-              <input
-                autocomplete="on"
-                type="email"
-                id="email"
-                name="email"
-                required
-              />
-            </div>
-            <div>
-              <label for="password">Password</label>
-              <input
-                autocomplete="on"
-                type="password"
-                name="password"
-                id="password"
-                required
-              />
-            </div>
-            <button>Submit</button>
-            <p class="gubi-error"></p>
-          </form>
-        </div>
-      </div>
-    </section>
-
+    <main>
+      <h1>LOGIN</h1>
+    </main>
     <%- include('../partials/footer'); -%>
-    <script src="/js/login__script.js"></script>
   </body>
 </html>

@@ -5,8 +5,7 @@
   "main": "src/server.js",
   "scripts": {
     "start": "node  src/server.js",
-    "dev": "nodemon -r dotenv/config src/server.js",
-    "test": "jest --runInBand --detectOpenHandles"
+    "dev": "nodemon -r dotenv/config src/server.js"
   },
   "repository": {
     "type": "git",
